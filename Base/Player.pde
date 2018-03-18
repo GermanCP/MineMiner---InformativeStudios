@@ -28,8 +28,6 @@ class Player {
   
   public int toolID = 0;
   
-  public String tool = "hand";
-  
   private Box cBox   = null;
 
   //---------------------------------------------------------------------------
@@ -91,6 +89,7 @@ class Player {
   void checkDeath() {
     if (this.health <= 0) {
       noLoop();
+      inv.clear();
       mainUI.deathScreen();
       this.coins = this.coins / 2;
     }
@@ -155,20 +154,16 @@ class Player {
     
     switch(toolID){
       case 0:
-      tool = "hand";
       hand = true;
       break;
       case 1:
-      tool = "pickaxe";
       pickaxe = true;
       break;
       case 2:
-      tool = "wrench";
       wrench = true;
       break;
       default:
       toolID = 0;
-      tool = "hand";
     }
   }  
   

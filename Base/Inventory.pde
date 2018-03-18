@@ -6,6 +6,8 @@ class Inventory {
   private ArrayList<Item> gold    = new ArrayList<Item>();
   private ArrayList<Item> diamond = new ArrayList<Item>();
   private ArrayList<Item> wood    = new ArrayList<Item>();
+  
+  private ArrayList<ArrayList> arrays = new ArrayList<ArrayList>();
 
   private float weightLimit = 100;
 
@@ -24,6 +26,11 @@ class Inventory {
   //--------------------------------------------------------------------------------------------------
   //constructor
   public Inventory() {
+    arrays.add(stone);
+    arrays.add(iron);
+    arrays.add(gold);
+    arrays.add(diamond);
+    arrays.add(wood);
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -67,7 +74,14 @@ class Inventory {
     return weight;
   }
 
-
+  void clear(){
+    for(ArrayList a : arrays){
+      while(a.size() > 0){
+        a.remove(0);
+      }
+    }
+  }
+  
   //--------------------------------------------------------------------------------------------------
   //sell functions
   void sell(String type) {  //sell the selected item for the current market prize

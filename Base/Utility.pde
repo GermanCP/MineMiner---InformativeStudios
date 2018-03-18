@@ -205,10 +205,11 @@ class Utility {
   //controlP5
   void initiateCP5() {  //initialises ControlP5 utilities
     //buttons for selling resources
-    sell.addButton("SellStone")  .setValue(0).setPosition(sellButtons.x + 0 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
-    sell.addButton("SellIron" )  .setValue(0).setPosition(sellButtons.x + 1 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
-    sell.addButton("SellGold" )  .setValue(0).setPosition(sellButtons.x + 2 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
-    sell.addButton("SellDiamond").setValue(0).setPosition(sellButtons.x + 3 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
+    sell.addButton("SellWood")   .setValue(0).setPosition(sellButtons.x + 0 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
+    sell.addButton("SellStone")  .setValue(0).setPosition(sellButtons.x + 1 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
+    sell.addButton("SellIron" )  .setValue(0).setPosition(sellButtons.x + 2 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
+    sell.addButton("SellGold" )  .setValue(0).setPosition(sellButtons.x + 3 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
+    sell.addButton("SellDiamond").setValue(0).setPosition(sellButtons.x + 4 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
 
     nav.addButton("ChangeMap")   .setValue(0).setPosition(width - 100, height - 40).setSize(90, 30);
   }
