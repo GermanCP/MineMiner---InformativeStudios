@@ -22,8 +22,8 @@ class UI {
   //healthBar parameter
   float x_lifeBar_maxSize = x_UI_w1 - x_UI_text * 2;
   float x_lifeBar_sizedLife;
-  float y_lifeBar_barTop = 7; //position of top stroke of lifeBar
-  float y_lifeBar_barBot = 8; //height of lifeBar
+  float y_lifeBar_barTop = 8; //position of top stroke of lifeBar
+  float y_lifeBar_barBot = 5; //height of lifeBar
 
 
   //controlP5 button parameters market
@@ -43,9 +43,9 @@ class UI {
     y_debug_UI_top = height - 40;
     y_debug_UI_bot = height;
   }
-  
-  void updateValues(){
-   x_lifeBar_sizedLife = x_lifeBar_maxSize * (player1.health / 100); 
+
+  void updateValues() {
+    x_lifeBar_sizedLife = x_lifeBar_maxSize * (player1.health / 100);
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -64,15 +64,22 @@ class UI {
     //coordinates text
     float tx = x_UI_text;
     float ty = y_UI_text_mainStats;
-    //coordinates lifebar 
+    //coordinates lifebar frame
     float x3 = x_UI_text;
-    float x4 = x_lifeBar_sizedLife;
-    float y3 = y_lifeBar_barTop;
-    float y4 = y_lifeBar_barTop + y_lifeBar_barBot;
+    float x4 = x_lifeBar_maxSize;
+    float y3 = y_lifeBar_barTop - 1;
+    float y4 = y_lifeBar_barTop + y_lifeBar_barBot + 1;
+    //coordinates lifebar 
+    float x5 = x_UI_text + 1;
+    float x6 = x_lifeBar_sizedLife - 1;
+    float y5 = y_lifeBar_barTop;
+    float y6 = y_lifeBar_barTop + y_lifeBar_barBot;
 
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
-
+    
+    fill(0, 0, 0, 0);
+    rect(x3, y3, x4, y4);
 
     util.mainTextUImainStats();
 
@@ -81,9 +88,8 @@ class UI {
 
     //life of the player
     util.lifeBar();
-    
-    rect(x3, y3, x4, y4); //rect(x,y,x,y) topleft, botright
-    
+
+    rect(x5, y5, x6, y6); //rect(x,y,x,y) topleft, botright
   }
 
   //window show inventory content
