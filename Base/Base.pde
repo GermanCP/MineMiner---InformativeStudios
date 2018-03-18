@@ -189,6 +189,7 @@ void draw() {
 
     //show UI
     mainUI.show(player1, shop);
+    mainUI.updateValues();
 
     //update market
     if (ccicle == cicle) {
