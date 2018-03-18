@@ -254,6 +254,11 @@ void keyPressed() {
   if (keyCode == 84) { //T for tooolchange
     player1.changeTool(player1.toolID + 1);
   }
+  if (keyCode == 129) {
+    if(state == -1) {
+    state = 0;
+    }
+  }
   //println(keyCode); //print keyCode for easier key implementation
 }
 
