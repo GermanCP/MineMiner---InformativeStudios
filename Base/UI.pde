@@ -45,7 +45,7 @@ class UI {
   //methodes -> UI windows
 
   //showing the players amount of currency
-  void coinValue(int coins_) {
+  void mainStats(int coins_) {
 
     util.mainThemeUI();
 
@@ -61,7 +61,7 @@ class UI {
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
 
-    util.mainTextUIcoin();
+    util.mainTextUImainStats();
 
     //show text
     text("Coins: " + coins_, tx, ty);
@@ -262,6 +262,7 @@ class UI {
   void deathScreen() {
     //tint screen red
     util.deathTheme();
+    
     rect(0, 0, width, height);
     
     //draw "YOU DIED" text
@@ -279,7 +280,7 @@ class UI {
   //showing HUD via this method
   void show(Player p_, Market m_) {
     //usual
-    coinValue(p_.coins);
+    mainStats(p_.coins);
     showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size(), p_.inv.wood.size());
 
 

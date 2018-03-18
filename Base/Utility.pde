@@ -21,7 +21,7 @@ class Utility {
     stroke(255);
   }
 
-  void mainTextUIcoin() {  //main textparameter for current coins for the UI
+  void mainTextUImainStats() {  //main textparameter for current coins for the UI
     textSize(13);
     fill(0, 255, 0);
   }
