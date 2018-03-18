@@ -294,6 +294,12 @@ void mousePressed() {
 
 //--------------------------------------------------------------------------------------------------
 //controlP5 events
+void SellWood(){
+  if (player1 != null) {
+    player1.inv.sell("wood");
+  }
+}
+
 void SellStone() {
   if (player1 != null) {
     player1.inv.sell("stone");
