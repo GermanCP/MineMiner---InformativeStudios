@@ -2,8 +2,9 @@
 //Based on Java and the Processing library
 
 /* version history
- Alpha 1.0 - 912  lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility         - 9 classes
- Alpha 1.1 - 1074 lines of code - Base, Bos, Inventory, Item, Map, Market, Player, UI, Utility, Marker - 10 classes
+ Alpha 1.0 - 912  lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility                     - 9 classes
+ Alpha 1.1 - 1074 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility, Marker             - 10 classes
+ Alpha 1.2 - ---- lines of code - Base, Animations, Box, Inventory, Item, Map, Marker, Market, Player, UI, Utility - 11 classes
  */
 
 /*
@@ -15,6 +16,7 @@ What we want to change:
  - add other textures, change textures
  */
 
+//--------------------------------------------------------------------------------------------------
 //import statements
 import static javax.swing.JOptionPane.*;
 import javax.swing.*;
@@ -24,10 +26,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import controlP5.*;
 
+//--------------------------------------------------------------------------------------------------
 //variables
 private int tileSize = 10; //size of each maptile or box
 private int cicle    = 300;
 private int ccicle   = 0;
+
+public int state = -1;
 
 public float intRadius = 100;
 
@@ -56,6 +61,8 @@ ControlP5 sell;
 ControlP5 nav;
 
 //textures for the map
+public PImage intro;
+
 public PImage stone;
 public PImage grass;
 public PImage pavement;
@@ -105,9 +112,6 @@ void setup() {
 
   //mainMap
   mainMap = overworld;
-  if (!fogOfWar || mainMap == overworld) {
-    mainMap.show(true);
-  }
 
   //setting CP5 windows to hide
   sell.hide();
@@ -122,60 +126,76 @@ void draw() {
   //reserved for print statements
 
   //
-  
-  //playing respawn animation
-  if (respawned) {
-     anim.respawnTimer();
+  if (state == -1) {
+    background(0);
+    image(intro, 0, 0, width, height);
+    anim.introTimer();
+  }
 
-    if (anim.time >= 255) {
-      //reset player position
-      player1.pos.x = startPos.x;
-      player1.pos.y = startPos.y;
-      
-      //reset map
-      mainMap = overworld;
-      
-      respawned = false;
+  //game starts
+  else if (state == 0) {
+    state = 1;
+    if (mainMap == overworld) {
       mainMap.show(true);
     }
     return;
   }
 
-  if (fogOfWar && mainMap == underworld1) {
-    background(0);
-  }
+  //if game is in main state
+  else if (state == 1) {
+    //playing respawn animation
+    if (respawned) {
+      anim.respawnTimer();
 
-  //show map
-  mainMap.show(false);
-  
-  //check if map can be changed
-  util.checkRange(startPos);
+      if (anim.time >= 255) {
+        //reset player position
+        player1.pos.x = startPos.x;
+        player1.pos.y = startPos.y;
 
-  //markers
-  if (showMarkers) {
-    if (mainMap == underworld1 || mainMap == overworld) {
-      start.show();
+        //reset map
+        mainMap = overworld;
+
+        respawned = false;
+        mainMap.show(true);
+      }
+      return;
+    }
+
+    if (fogOfWar && mainMap == underworld1) {
+      background(0);
+    }
+
+    //show map
+    mainMap.show(false);
+
+    //check if map can be changed
+    util.checkRange(startPos);
+
+    //markers
+    if (showMarkers) {
+      if (mainMap == underworld1 || mainMap == overworld) {
+        start.show();
+      }
+    }
+
+    resizeDir();
+    //show Player
+    player1.move(newDir);
+    player1.checkDeath();
+    player1.show();
+
+    //show UI
+    mainUI.show(player1, shop);
+
+    //update market
+    if (ccicle == cicle) {
+      shop.updatePrizes();
+      ccicle = 0;
+    } else {
+      ccicle++;
     }
   }
-
-  resizeDir();
-  //show Player
-  player1.move(newDir);
-  player1.checkDeath();
-  player1.show();
-
-  //show UI
-  mainUI.show(player1, shop);
-
-  //update market
-  if (ccicle == cicle) {
-    shop.updatePrizes();
-    ccicle = 0;
-  } else {
-    ccicle++;
-  }
 }
-
 //--------------------------------------------------------------------------------------------------
 //methods
 void resizeDir() {
