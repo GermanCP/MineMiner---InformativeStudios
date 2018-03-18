@@ -95,10 +95,10 @@ class Player {
     //reset to overworld
     mainMap = overworld;
     background(0);
-    mainMap.show(true);
 
     //revive and start program
     this.health = 100;
+    respawned = true;
     loop();
   }
 
