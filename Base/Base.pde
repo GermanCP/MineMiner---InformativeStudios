@@ -31,7 +31,7 @@ private int ccicle   = 0;
 
 public float intRadius = 100;
 
-private boolean fogOfWar = true;
+private boolean fogOfWar    = true;
 private boolean showMarkers = true;
 
 public boolean selling   = false;
@@ -47,6 +47,7 @@ public Map mainMap;
 public Map underworld1;
 public Map overworld;
 public Utility util;
+public Animations anim;
 public Marker start;
 public Market shop = new Market();
 
@@ -87,10 +88,12 @@ void setup() {
 
   util.importImages();
   util.initiateCP5();
-  
+
+  anim = new Animations();
+
   //startmarker
   start = new Marker(startPos.x, startPos.y, 10);
-  
+
   //setting up player character
   player1 = new Player(startPos.x, startPos.y, 20, 100);
 
@@ -108,6 +111,7 @@ void setup() {
 
   //setting CP5 windows to hide
   sell.hide();
+  nav.hide();
 }
 
 
@@ -118,10 +122,23 @@ void draw() {
   //reserved for print statements
 
   //
+  
+  //playing respawn animation
+  if (respawned) {
+     anim.respawnTimer();
 
-  if(respawned){
-   mainMap.show(true);
-   respawned = false;
+    if (anim.time >= 255) {
+      //reset player position
+      player1.pos.x = startPos.x;
+      player1.pos.y = startPos.y;
+      
+      //reset map
+      mainMap = overworld;
+      
+      respawned = false;
+      mainMap.show(true);
+    }
+    return;
   }
 
   if (fogOfWar && mainMap == underworld1) {
@@ -130,11 +147,14 @@ void draw() {
 
   //show map
   mainMap.show(false);
+  
+  //check if map can be changed
+  util.checkRange(startPos);
 
   //markers
-  if(showMarkers){
-    if(mainMap == underworld1 || mainMap == overworld){
-    start.show();
+  if (showMarkers) {
+    if (mainMap == underworld1 || mainMap == overworld) {
+      start.show();
     }
   }
 

@@ -6,6 +6,8 @@ class Utility {
   private PVector buttonSize;
 
   private float off = 10;
+  
+  private boolean navShow = false;
 
   //--------------------------------------------------------------------------------------------------
   //constructor
@@ -17,7 +19,7 @@ class Utility {
 
   //colorsetups
   void mainThemeUI() {    //main colorscheme for the UI
-    fill(0, 0, 0, 100);
+    fill(0, 0, 0, 255);
     stroke(255);
   }
 
@@ -51,23 +53,23 @@ class Utility {
     fill(50);
     stroke(60);
   }
-  
-  void marker(){            //theme for marker
+
+  void marker() {            //theme for marker
     fill(0, 0, 200);
     stroke(0);
   }
-  
-  void lifeBar(){
+
+  void lifeBar() {
     fill(255, 0, 0);
     stroke(255);
   }
-  
-  void deathTheme(){
-   fill(255, 0, 0, 100);
-   stroke(0, 0, 0, 0);
+
+  void deathTheme() {
+    fill(255, 0, 0, 100);
+    stroke(0, 0, 0, 0);
   }
-  
-  void deathText(){
+
+  void deathText() {
     fill(255);
     textSize(80);
   }
@@ -178,14 +180,26 @@ class Utility {
     }
   }
 
-  void keepOpen(Box b_){
-   if(player1.pos.dist(b_.pos) <= intRadius){
-     
-   } else if (selling == true) {
-    sell.hide();
-    selling = false;
-    mainMap.show(true);
-   }
+  void keepOpen(Box b_) {
+    if (player1.pos.dist(b_.pos) <= intRadius) {
+    } else if (selling == true) {
+      sell.hide();
+      selling = false;
+      mainMap.show(true);
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  //checkmethods
+  void checkRange(PVector pos_) {
+    if (player1.pos.dist(pos_) <= intRadius && navShow == false) {
+      nav.show();
+      navShow = true;
+    } else if (player1.pos.dist(pos_) > intRadius && navShow == true) {
+      nav.hide();
+      mainMap.show(true);
+      navShow = false;
+    }
   }
   //--------------------------------------------------------------------------------------------------
   //controlP5
@@ -195,7 +209,7 @@ class Utility {
     sell.addButton("SellIron" )  .setValue(0).setPosition(sellButtons.x + 1 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
     sell.addButton("SellGold" )  .setValue(0).setPosition(sellButtons.x + 2 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
     sell.addButton("SellDiamond").setValue(0).setPosition(sellButtons.x + 3 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
-    
+
     nav.addButton("ChangeMap")   .setValue(0).setPosition(width - 100, height - 40).setSize(90, 30);
   }
 
