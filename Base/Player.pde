@@ -88,17 +88,10 @@ class Player {
   }
 
   void respawn() {      //respawn
-    //reset position
-    this.pos.x = startPos.x;
-    this.pos.y = startPos.y;
-
-    //reset to overworld
-    mainMap = overworld;
-    background(0);
-
     //revive and start program
     this.health = 100;
     respawned = true;
+    anim.time = 0;
     loop();
   }
 
