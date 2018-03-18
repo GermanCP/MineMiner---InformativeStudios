@@ -77,7 +77,7 @@ class UI {
 
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
-    
+
     fill(0, 0, 0, 0);
     rect(x3, y3, x4, y4);
 
@@ -86,9 +86,9 @@ class UI {
     //show text
     text("Coins: " + coins_, tx, ty);
 
-    //life of the player
     util.lifeBar();
-
+    
+    //lifeBar of the player
     rect(x5, y5, x6, y6); //rect(x,y,x,y) topleft, botright
   }
 
