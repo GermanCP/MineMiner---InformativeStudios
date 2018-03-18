@@ -56,7 +56,7 @@ class Utility {
 
   void marker() {            //theme for marker
     fill(0, 0, 200);
-    stroke(0);
+    stroke(255);
   }
 
   void lifeBar() {
@@ -138,7 +138,7 @@ class Utility {
 
   void interact(Box b_, String arg) {  //makes the player able to interact with boxes, handles interaction
     if (b_ != null) {
-      if (arg == "mine" && b_.mineable) {
+      if (arg == "mine" && b_.mineable && player1.toolID == 1) {
         mine(b_);
       } else if (arg == "open" && b_.interactable) {
         open(b_);

@@ -116,7 +116,7 @@ void setup() {
   //setting CP5 windows to hide
   sell.hide();
   nav.hide();
-  
+
   //update UI
   mainUI.updateValues();
 }
@@ -241,6 +241,18 @@ void keyPressed() {
   }
   if (keyCode == 10) {
     player1.respawn();
+  }
+  if (keyCode == 49) { //1
+    player1.changeTool(0);
+  }
+  if (keyCode == 50) { //2
+    player1.changeTool(1);
+  }
+  if (keyCode == 51) { //3
+    player1.changeTool(2);
+  }
+  if (keyCode == 84) { //T for tooolchange
+    player1.changeTool(player1.toolID + 1);
   }
   //println(keyCode); //print keyCode for easier key implementation
 }

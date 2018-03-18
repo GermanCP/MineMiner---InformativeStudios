@@ -19,9 +19,18 @@ class Player {
   private float normal     = 3;
   private float fast       = 4;
   private float speed;
+  
   public  float health     = 100;
 
-  private Box cBox = null;
+  private boolean pickaxe = false;
+  private boolean wrench  = false;
+  private boolean hand    = true;
+  
+  public int toolID = 0;
+  
+  public String tool = "hand";
+  
+  private Box cBox   = null;
 
   //---------------------------------------------------------------------------
   //constructor  
@@ -135,6 +144,34 @@ class Player {
     this.gridPos.y = this.pos.y / tileSize;
   }
 
+  //--------------------------------------------------------------------------------------------------
+  //tool methods
+  void changeTool(int id){
+    toolID = id;
+    
+    hand    = false;
+    pickaxe = false;
+    wrench  = false;
+    
+    switch(toolID){
+      case 0:
+      tool = "hand";
+      hand = true;
+      break;
+      case 1:
+      tool = "pickaxe";
+      pickaxe = true;
+      break;
+      case 2:
+      tool = "wrench";
+      wrench = true;
+      break;
+      default:
+      toolID = 0;
+      tool = "hand";
+    }
+  }  
+  
   //--------------------------------------------------------------------------------------------------
   //get and set methods
   void addCoins(float arg) {
