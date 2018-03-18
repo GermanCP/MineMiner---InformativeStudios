@@ -14,6 +14,12 @@ What we want to change:
  - add more textures
  - add buildings
  - add other textures, change textures
+ - add more maps
+ - add ability to walk from one map to the other
+ - add tool class and functionality such as buying them
+ - be able to refine materials
+ - more materials
+ - even more materials
  */
 
 //--------------------------------------------------------------------------------------------------
