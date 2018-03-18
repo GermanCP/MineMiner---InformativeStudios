@@ -59,7 +59,7 @@ class Utility {
   
   void lifeBar(){
     fill(255, 0, 0);
-    stroke(255);
+    noStroke();
   }
   
   void deathTheme(){
