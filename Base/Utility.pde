@@ -216,6 +216,8 @@ class Utility {
   //--------------------------------------------------------------------------------------------------
   //import files
   void importImages() {
+    intro       = loadImage("../textures/intro.png");
+    
     stone       = loadImage("../textures/stone.png");
     grass       = loadImage("../textures/grass.png");
     pavement    = loadImage("../textures/pavement.png");
