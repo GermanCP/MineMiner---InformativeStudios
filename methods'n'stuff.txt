@@ -1,0 +1,15 @@
+-Player:
+Player(float r_, int coins_)
+show()
+
+-UI:
+UI()
+openInventory()
+coinValue()
+show()
+
+-Box:
+
+-Inventory:
+
+-Map:
