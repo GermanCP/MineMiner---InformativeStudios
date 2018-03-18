@@ -5,7 +5,7 @@ class UI {
   //window option UI
   float x_UI = 0;
   float x_UI_w1  = 250;   //w1 = end of first window, start of second window
-  float x_UI_w2  = 480;   //w2 = look above
+  float x_UI_w2  = 500;   //w2 = look above
   float x_UI_w3  = 1000;
   float y_UI_top = 0;     //differenz between y_UI_bot and y_UI_top = window height
   float y_UI_bot = 45;
@@ -104,12 +104,12 @@ class UI {
     float y1 = y_UI_top;
     float y2 = y_UI_bot;
     //coordinates text
-    float tx0 =  x1 + x_UI_text;  //1st text fields, iron_ and diamond_
-    float tx1 = 70;   //1st number of items, stone_ and diamond_
-    float tx2 = 95;   //2nd text fields, iron_ and wood_
-    float tx3 = 140;  //2nd number of items, iron_ and wood_
-    float tx4 = 165;  //3rd text fields, gold_
-    float tx5 = 205;  //3rd number of items, gold_
+    float tx0 =  x1 + x_UI_text;  //1st text fields, wood_ and iron_
+    float tx1 = 50;   //1st number of items, wood_ and iron_
+    float tx2 = 75;   //2nd text fields, stone_ and gold_
+    float tx3 = 120;  //2nd number of items, stone_ and gold_
+    float tx4 = 145;  //3rd text fields, diamond_
+    float tx5 = 215;  //3rd number of items, diamond_
     float ty = y_debug_UI_text + 6;  //top border distance
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
@@ -118,16 +118,17 @@ class UI {
     util.mainTextUIinv();
 
     //show text
-    text("Stone:", tx0, ty);
-    text(stone_, tx0 + tx1, ty);
-    text("Iron:", tx0 + tx2, ty);
-    text(iron_, tx0 + tx3, ty);
-    text("Gold:", tx0 + tx4, ty);
-    text(gold_, tx0 + tx5, ty);
-    text("Diamond:", tx0, ty*2);
-    text(diamond_, tx0 + tx1, ty*2);
-    text("Wood:", tx0 + tx2, ty*2);
-    text(wood_, tx0 + tx3, ty*2);
+    text("Wood:", tx0, ty);
+    text(wood_, tx0 + tx1, ty);
+    text("Stone:", tx0 + tx2, ty);
+    text(stone_, tx0 + tx3, ty);
+    text("Iron:", tx0, ty*2);
+    text(iron_, tx0 + tx1, ty*2);
+    text("Gold:", tx0 + tx2, ty*2);
+    text(gold_, tx0 + tx3, ty*2);
+    text("Diamond:", tx0 + tx4, ty*2);
+    text(diamond_, tx0 + tx5, ty*2);
+    
   }
   
   void showRestOfUI() {
