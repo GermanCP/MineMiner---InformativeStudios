@@ -19,6 +19,12 @@ class UI {
   float x_UI_text       = 10;
   float y_UI_text_mainStats  = 38;
   float y_debug_UI_text = 12;
+  //healthBar parameter
+  float x_lifeBar_maxSize = x_UI_w1 - x_UI_text * 2;
+  float x_lifeBar_sizedLife = x_lifeBar_maxSize * (player1.health / 100);
+  float y_lifeBar_barTop = 7;
+  float y_lifeBar_barBot = 8;
+
 
   //controlP5 button parameters market
   public float px = 100;
@@ -54,10 +60,9 @@ class UI {
     //coordinates text
     float tx = x_UI_text;
     float ty = y_UI_text_mainStats;
-    //coordinates lifebar
-    float barHeight = 8;
-    float y3 = 7;
-    float y4 = y3 + barHeight;
+    //coordinates lifebar    
+    float y3 = y_lifeBar_barTop;
+    float y4 = y_lifeBar_barTop + y_lifeBar_barBot;
 
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
@@ -69,11 +74,8 @@ class UI {
     text("Coins: " + coins_, tx, ty);
 
     //life of the player
-    float maxSize = x_UI_w1 - tx * 2;
-    float sizedLife = maxSize * (player1.health / 100);
-
     util.lifeBar();
-    rect(tx, y3, sizedLife, y4); //rect(x,y,x,y) topleft, botright
+    rect(tx, y3, x_lifeBar_sizedLife, y4); //rect(x,y,x,y) topleft, botright
     //
   }
 
