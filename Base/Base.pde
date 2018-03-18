@@ -34,7 +34,8 @@ public float intRadius = 100;
 private boolean fogOfWar = true;
 private boolean showMarkers = true;
 
-public boolean selling = false;
+public boolean selling   = false;
+public boolean respawned = false;
 
 private PVector startPos = new PVector(100, 100);
 private PVector newDir = new PVector();
@@ -117,6 +118,11 @@ void draw() {
   //reserved for print statements
 
   //
+
+  if(respawned){
+   mainMap.show(true);
+   respawned = false;
+  }
 
   if (fogOfWar && mainMap == underworld1) {
     background(0);
