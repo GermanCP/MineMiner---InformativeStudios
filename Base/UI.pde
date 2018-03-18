@@ -22,8 +22,8 @@ class UI {
   //healthBar parameter
   float x_lifeBar_maxSize = x_UI_w1 - x_UI_text * 2;
   float x_lifeBar_sizedLife;
-  float y_lifeBar_barTop = 7;
-  float y_lifeBar_barBot = 8;
+  float y_lifeBar_barTop = 7; //position of top stroke of lifeBar
+  float y_lifeBar_barBot = 8; //height of lifeBar
 
 
   //controlP5 button parameters market
@@ -64,7 +64,9 @@ class UI {
     //coordinates text
     float tx = x_UI_text;
     float ty = y_UI_text_mainStats;
-    //coordinates lifebar    
+    //coordinates lifebar 
+    float x3 = x_UI_text;
+    float x4 = x_lifeBar_sizedLife;
     float y3 = y_lifeBar_barTop;
     float y4 = y_lifeBar_barTop + y_lifeBar_barBot;
 
@@ -79,8 +81,9 @@ class UI {
 
     //life of the player
     util.lifeBar();
-    rect(tx, y3, x_lifeBar_sizedLife, y4); //rect(x,y,x,y) topleft, botright
-    //
+    
+    rect(x3, y3, x4, y4); //rect(x,y,x,y) topleft, botright
+    
   }
 
   //window show inventory content
