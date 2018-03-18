@@ -21,7 +21,7 @@ class UI {
   float y_debug_UI_text = 12;
   //healthBar parameter
   float x_lifeBar_maxSize = x_UI_w1 - x_UI_text * 2;
-  float x_lifeBar_sizedLife = x_lifeBar_maxSize * (player1.health / 100);
+  float x_lifeBar_sizedLife;
   float y_lifeBar_barTop = 7;
   float y_lifeBar_barBot = 8;
 
@@ -42,6 +42,10 @@ class UI {
   UI() {    
     y_debug_UI_top = height - 40;
     y_debug_UI_bot = height;
+  }
+  
+  void updateValues(){
+   x_lifeBar_sizedLife = x_lifeBar_maxSize * (player1.health / 100); 
   }
 
   //--------------------------------------------------------------------------------------------------

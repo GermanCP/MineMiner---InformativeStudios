@@ -4,7 +4,7 @@
 /* version history
  Alpha 1.0 - 912  lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility                     - 9 classes
  Alpha 1.1 - 1074 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility, Marker             - 10 classes
- Alpha 1.2 - ---- lines of code - Base, Animations, Box, Inventory, Item, Map, Marker, Market, Player, UI, Utility - 11 classes
+ Alpha 1.2 - 1481 lines of code - Base, Animations, Box, Inventory, Item, Map, Marker, Market, Player, UI, Utility - 11 classes
  */
 
 /*
@@ -116,6 +116,9 @@ void setup() {
   //setting CP5 windows to hide
   sell.hide();
   nav.hide();
+  
+  //update UI
+  mainUI.updateValues();
 }
 
 
