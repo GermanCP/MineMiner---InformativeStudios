@@ -51,6 +51,11 @@ class Utility {
     fill(50);
     stroke(60);
   }
+  
+  void marker(){            //theme for marker
+    fill(0, 0, 200);
+    stroke(0);
+  }
 
   //--------------------------------------------------------------------------------------------------
   //Windows to be opened
@@ -159,7 +164,7 @@ class Utility {
   }
 
   void keepOpen(Box b_){
-   if(player1.pos.dist(b_.pos) <= b_.threshold){
+   if(player1.pos.dist(b_.pos) <= intRadius){
      
    } else if (selling == true) {
     sell.hide();

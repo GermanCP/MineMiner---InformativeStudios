@@ -8,8 +8,8 @@
 
 /*
 What we want to change:
- - slim code, do more cleanup
- - finish market
+ - slim code, do more cleanup, even more cleanup
+ - refine market
  - add more textures
  - add buildings
  - add other textures, change textures
@@ -32,6 +32,7 @@ private int ccicle   = 0;
 public float intRadius = 100;
 
 private boolean fogOfWar = true;
+private boolean showMarkers = true;
 
 public boolean selling = false;
 
@@ -42,9 +43,10 @@ private PVector newDir = new PVector();
 public UI mainUI;
 public Player player1;
 public Map mainMap;
-public Map underworld;
+public Map underworld1;
 public Map overworld;
 public Utility util;
+public Marker start;
 public Market shop = new Market();
 
 //tools for buttons etc in UI
@@ -84,12 +86,15 @@ void setup() {
 
   util.importImages();
   util.initiateCP5();
-
+  
+  //startmarker
+  start = new Marker(startPos.x, startPos.y, 10);
+  
   //setting up player character
   player1 = new Player(startPos.x, startPos.y, 20, 100);
 
   //mainMap
-  underworld = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
+  underworld1 = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
 
   //overworld
   overworld = new Map(width, height, tileSize, tileSize, "../textures/maps/overworld.png");
@@ -100,7 +105,7 @@ void setup() {
     mainMap.show(true);
   }
 
-  //setting CP% windows to hide
+  //setting CP5 windows to hide
   sell.hide();
 }
 
@@ -113,12 +118,19 @@ void draw() {
 
   //
 
-  if (fogOfWar && mainMap == underworld) {
+  if (fogOfWar && mainMap == underworld1) {
     background(0);
   }
 
   //show map
   mainMap.show(false);
+
+  //markers
+  if(showMarkers){
+    if(mainMap == underworld1 || mainMap == overworld){
+    start.show();
+    }
+  }
 
   resizeDir();
   //show Player
@@ -243,12 +255,11 @@ void SellDiamond() {
 void ChangeMap() {
   if (player1 != null) {
     if (mainMap == overworld) {
-      mainMap = underworld;
+      mainMap = underworld1;
     } else {
       mainMap = overworld;
       mainMap.show(true);
     }
-    println("done");
     player1.pos.x = startPos.x;
     player1.pos.y = startPos.y;
   }

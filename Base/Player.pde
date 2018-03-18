@@ -14,7 +14,10 @@ class Player {
   private int coins;
 
   private float r;
-  private float speed = 3;
+  private float slow   = 2;
+  private float normal = 3;
+  private float fast   = 4;
+  private float speed;
 
   private Box cBox = null;
 
@@ -28,6 +31,8 @@ class Player {
 
     this.coins = coins_;
     this.r = r_;
+
+    this.speed = this.normal;
   }
 
   //---------------------------------------------------------------------------
@@ -55,21 +60,28 @@ class Player {
   private boolean checkCollision() { //checks if player is colliding with anything
     if (checkBorders()) {
       return true;
-    } else if (checkBoxes()) {
+    } else if (checkBoxes() == 1) {
       return true;
+    } else if (checkBoxes() == 2) { //player is in water
+      this.speed = this.slow;
+      return false;
+    } else {
+      this.speed = this.normal;
+      return false;
     }
-    return false;
   }
 
   //--------------------------------------------------------------------------------------------------
   //collision checking
-  boolean checkBoxes() {    //detect whether any box is too close to the player and he is colliding
+  int checkBoxes() {    //detect whether any box is too close to the player and he is colliding
     for (Box b : mainMap.boxes) {
-      if (this.newPos.dist(b.posM) <= r * 0.75 && b.type != 1) {
-        return true;
+      if (this.newPos.dist(b.posM) <= r * 0.75 && b.type != 1 && b.type != 7) { //solid block
+        return 1;
+      } else if (this.newPos.dist(b.posM) <= r * 0.5 && b.type == 7) {  //water
+        return 2;
       }
     }
-    return false;
+    return 0;
   }
 
   boolean checkBorders() {  //checking whether the player has reached the border of the screen, if so, pause movement in a certain direction
