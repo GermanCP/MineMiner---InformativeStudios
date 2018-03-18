@@ -17,7 +17,7 @@ class UI {
   float y_debug_UI_bot;
   //window options text pos
   float x_UI_text       = 10;
-  float y_UI_text_coin  = 35;
+  float y_UI_text_mainStats  = 38;
   float y_debug_UI_text = 12;
 
   //controlP5 button parameters market
@@ -27,24 +27,21 @@ class UI {
   public float sy = 30;
   public float boff = 10;
 
-  private float sizedLife;
-  private float maxSize;
-  private float lifeHeight = 10;
-  private float lifeOff    = 5;
+
+
+
 
   //--------------------------------------------------------------------------------------------------
   //constructor
   UI() {    
     y_debug_UI_top = height - 40;
     y_debug_UI_bot = height;
-    
-    maxSize = x_UI_w1 - lifeOff * 2;
   }
 
   //--------------------------------------------------------------------------------------------------
   //methodes -> UI windows
 
-  //showing the players amount of currency
+  //showing the players amount of currency and health
   void mainStats(int coins_) {
 
     util.mainThemeUI();
@@ -56,7 +53,12 @@ class UI {
     float y2 = y_UI_bot;
     //coordinates text
     float tx = x_UI_text;
-    float ty = y_UI_text_coin;
+    float ty = y_UI_text_mainStats;
+    //coordinates lifebar
+    float barHeight = 8;
+    float y3 = 7;
+    float y4 = y3 + barHeight;
+
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
@@ -65,12 +67,14 @@ class UI {
 
     //show text
     text("Coins: " + coins_, tx, ty);
-    
+
     //life of the player
-    sizedLife = maxSize * (player1.health / 100);
-    
+    float maxSize = x_UI_w1 - tx * 2;
+    float sizedLife = maxSize * (player1.health / 100);
+
     util.lifeBar();
-    rect(lifeOff, lifeOff, sizedLife, lifeOff + lifeHeight);
+    rect(tx, y3, sizedLife, y4); //rect(x,y,x,y) topleft, botright
+    //
   }
 
   //window show inventory content
@@ -185,12 +189,12 @@ class UI {
     text(invSpace_, tx, y1 + ty*2);
     text(maxSpace_, tx, y1 + ty*3);
   }
-  
+
   //show check boxes
   void checkBox(int checkBox_) {
-    
+
     util.mainThemeUI();
-    
+
     //coordinates window
     float x1 = x_debug_UI_w3;
     float x2 = x_debug_UI_w4;
@@ -199,18 +203,17 @@ class UI {
     //coordinates text
     float tx = x_debug_UI_w3 + x_UI_text;
     float ty = y_debug_UI_text;
-    
+
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
-    
+
     util.mainDebugTextUI();
-    
+
     //show text
     text("checkBox:", tx, y1 + ty);
     text(checkBox_, tx, y1 + ty*2);
-    
   }
-  
-  
+
+
   //--------------------------------------------------------------------------------------------------
   //temporary windows
 
@@ -262,20 +265,20 @@ class UI {
   void deathScreen() {
     //tint screen red
     util.deathTheme();
-    
+
     rect(0, 0, width, height);
-    
+
     //draw "YOU DIED" text
     textAlign(CENTER, CENTER);
     util.deathText();
     text("YOU DIED!", width /2, height / 2);
-    
+
     //draw respwan hint
     textSize(20);
     text("Press ENTER to respawn!", width / 2, height / 2 + 50);
     textAlign(LEFT);
   }
-  
+
   //--------------------------------------------------------------------------------------------------
   //showing HUD via this method
   void show(Player p_, Market m_) {
