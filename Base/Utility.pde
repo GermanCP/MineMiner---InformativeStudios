@@ -22,7 +22,7 @@ class Utility {
   }
 
   void mainTextUIcoin() {  //main textparameter for current coins for the UI
-    textSize(36);
+    textSize(13);
     fill(0, 255, 0);
   }
 
@@ -55,6 +55,21 @@ class Utility {
   void marker(){            //theme for marker
     fill(0, 0, 200);
     stroke(0);
+  }
+  
+  void lifeBar(){
+    fill(255, 0, 0);
+    stroke(255);
+  }
+  
+  void deathTheme(){
+   fill(255, 0, 0, 100);
+   stroke(0, 0, 0, 0);
+  }
+  
+  void deathText(){
+    fill(255);
+    textSize(80);
   }
 
   //--------------------------------------------------------------------------------------------------

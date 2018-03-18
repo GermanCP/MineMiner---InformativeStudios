@@ -26,13 +26,18 @@ class UI {
   public float sy = 30;
   public float boff = 10;
 
-
+  private float sizedLife;
+  private float maxSize;
+  private float lifeHeight = 10;
+  private float lifeOff    = 5;
 
   //--------------------------------------------------------------------------------------------------
   //constructor
   UI() {    
     y_debug_UI_top = height - 40;
     y_debug_UI_bot = height;
+    
+    maxSize = x_UI_w1 - lifeOff * 2;
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -59,6 +64,12 @@ class UI {
 
     //show text
     text("Coins: " + coins_, tx, ty);
+    
+    //life of the player
+    sizedLife = maxSize * (player1.health / 100);
+    
+    util.lifeBar();
+    rect(lifeOff, lifeOff, sizedLife, lifeOff + lifeHeight);
   }
 
   //window show inventory content
@@ -218,7 +229,24 @@ class UI {
     text(diamondPrize_, tx4, ty4);
   }
 
-
+  //--------------------------------------------------------------------------------------------------
+  //death
+  void deathScreen() {
+    //tint screen red
+    util.deathTheme();
+    rect(0, 0, width, height);
+    
+    //draw "YOU DIED" text
+    textAlign(CENTER, CENTER);
+    util.deathText();
+    text("YOU DIED!", width /2, height / 2);
+    
+    //draw respwan hint
+    textSize(20);
+    text("Press ENTER to respawn!", width / 2, height / 2 + 50);
+    textAlign(LEFT);
+  }
+  
   //--------------------------------------------------------------------------------------------------
   //showing HUD via this method
   void show(Player p_, Market m_) {

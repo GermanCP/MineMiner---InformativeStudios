@@ -14,10 +14,12 @@ class Player {
   private int coins;
 
   private float r;
-  private float slow   = 2;
-  private float normal = 3;
-  private float fast   = 4;
+  private float lavaDamage = 0.25; //damage per tick
+  private float slow       = 1;
+  private float normal     = 3;
+  private float fast       = 4;
   private float speed;
+  public  float health     = 100;
 
   private Box cBox = null;
 
@@ -65,6 +67,10 @@ class Player {
     } else if (checkBoxes() == 2) { //player is in water
       this.speed = this.slow;
       return false;
+    } else if (checkBoxes() == 3) {
+      this.speed = this.slow;
+      this.health -= this.lavaDamage;
+      return false;
     } else {
       this.speed = this.normal;
       return false;
@@ -72,13 +78,40 @@ class Player {
   }
 
   //--------------------------------------------------------------------------------------------------
+  //death
+  void checkDeath() {
+    if (this.health <= 0) {
+      noLoop();
+      mainUI.deathScreen();
+      this.coins = this.coins / 2;
+    }
+  }
+
+  void respawn() {      //respawn
+    //reset position
+    this.pos.x = startPos.x;
+    this.pos.y = startPos.y;
+
+    //reset to overworld
+    mainMap = overworld;
+    background(0);
+    mainMap.show(true);
+
+    //revive and start program
+    this.health = 100;
+    loop();
+  }
+
+  //--------------------------------------------------------------------------------------------------
   //collision checking
   int checkBoxes() {    //detect whether any box is too close to the player and he is colliding
     for (Box b : mainMap.boxes) {
-      if (this.newPos.dist(b.posM) <= r * 0.75 && b.type != 1 && b.type != 7) { //solid block
+      if (this.newPos.dist(b.posM) <= r * 0.75 && b.type != 1 && b.type != 7 && b.type != 8) { //solid block
         return 1;
       } else if (this.newPos.dist(b.posM) <= r * 0.5 && b.type == 7) {  //water
         return 2;
+      } else if (this.newPos.dist(b.posM) <= r * 0.5 && b.type == 8) {  //lava
+        return 3;
       }
     }
     return 0;

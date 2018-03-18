@@ -135,6 +135,7 @@ void draw() {
   resizeDir();
   //show Player
   player1.move(newDir);
+  player1.checkDeath();
   player1.show();
 
   //show UI
@@ -187,6 +188,9 @@ void keyPressed() {
   }
   if (keyCode == 130) {
     mainUI.showDebug = !mainUI.showDebug;
+  }
+  if (keyCode == 10) {
+    player1.respawn();
   }
   //println(keyCode); //print keyCode for easier key implementation
 }
