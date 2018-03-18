@@ -12,6 +12,7 @@ class UI {
   float x_debug_UI_w1   = 70;
   float x_debug_UI_w2   = 140;
   float x_debug_UI_w3   = 210;
+  float x_debug_UI_w4   = 280;
   float y_debug_UI_top;
   float y_debug_UI_bot;
   //window options text pos
@@ -177,14 +178,41 @@ class UI {
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
-    util.mainTextUIinv();
+    util.mainDebugTextUI();
 
     //show text
     text("InvSpace", tx, y1 + ty);
     text(invSpace_, tx, y1 + ty*2);
     text(maxSpace_, tx, y1 + ty*3);
   }
+  
+  //show check boxes
+  void checkBox(int checkBox_) {
+    
+    util.mainThemeUI();
+    
+    //coordinates window
+    float x1 = x_debug_UI_w3;
+    float x2 = x_debug_UI_w4;
+    float y1 = y_debug_UI_top;
+    float y2 = y_debug_UI_bot;
+    //coordinates text
+    float tx = x_debug_UI_w3 + x_UI_text;
+    float ty = y_debug_UI_text;
+    
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);
+    
+    util.mainDebugTextUI();
+    
+    //show text
+    text("checkBox:", tx, y1 + ty);
+    text(checkBox_, tx, y1 + ty*2);
+    
+  }
+  
+  
   //--------------------------------------------------------------------------------------------------
+  //temporary windows
 
   //frame for buttons on market when sell
   void buttonFrameMarket(float stonePrize_, float ironPrize_, float goldPrize_, float diamondPrize_) {
@@ -260,6 +288,7 @@ class UI {
       playerPos(parseInt(p_.pos.x), parseInt(p_.pos.y));
       playerDir(parseInt(p_.dir.x), parseInt(p_.dir.y));
       invSpace(parseInt(p_.inv.calcWeight()), parseInt(p_.inv.weightLimit));
+      checkBox(p_.checkBoxes());
     }
 
     if (selling == true) {
