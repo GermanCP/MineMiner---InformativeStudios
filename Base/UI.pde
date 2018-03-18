@@ -6,6 +6,7 @@ class UI {
   float x_UI = 0;
   float x_UI_w1  = 250;   //w1 = end of first window, start of second window
   float x_UI_w2  = 480;   //w2 = look above
+  float x_UI_w3  = 1000;
   float y_UI_top = 0;     //differenz between y_UI_bot and y_UI_top = window height
   float y_UI_bot = 45;
   //window option DebugUI
@@ -52,7 +53,7 @@ class UI {
   //methodes -> UI windows
 
   //showing the players amount of currency and health
-  void mainStats(int coins_) {
+  void showMainStats(int coins_) {
 
     util.mainThemeUI();
 
@@ -127,6 +128,21 @@ class UI {
     text(diamond_, tx0 + tx1, ty*2);
     text("Wood:", tx0 + tx2, ty*2);
     text(wood_, tx0 + tx3, ty*2);
+  }
+  
+  void showRestOfUI() {
+    
+    util.mainThemeUI();
+    
+    //coordinates window
+    float x1 = x_UI_w2;
+    float x2 = x_UI_w3;
+    float y1 = y_UI_top;
+    float y2 = y_UI_bot;
+    
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);
+    
+        
   }
 
 
@@ -233,46 +249,46 @@ class UI {
   //temporary windows
 
   //frame for buttons on market when sell
-  void buttonFrameMarket(float stonePrize_, float ironPrize_, float goldPrize_, float diamondPrize_) {
+  void buttonFrameMarket(float woodPrize_, float stonePrize_, float ironPrize_, float goldPrize_, float diamondPrize_) {
 
     util.mainThemeUIinventorys();
 
     //coordinates window
-    float nButton = 4; //number of buttons
+    float nButton = 5; //number of buttons
     float nDistanceButtons = nButton - 1; //number of distances between buttons
-    float prizePos = 0.6;
+    float prizePos = 0.75;
     float b1 = 3; //border distance
     float x1 = px - b1;
     float x2 = px + nButton*sx + nDistanceButtons*boff + b1;
     float y1 = py - 16;
     float y2 = py + sy + b1;
     //coordinates text
-    //text Value
-    float tx0 = px;
-    float ty0 = py - b1;
-    //button sell stone
+    //button sell wood
     float tx1 = (px + b1) + (sx * ((1*nButton)/nButton)) + ((((1*nButton)/nButton)-1)*boff) - (prizePos*sx); //just dont ask
     float ty1 = py - b1;
-    //button sell iron
+    //button sell stone
     float tx2 = (px + b1) + (sx * ((2*nButton)/nButton)) + ((((2*nButton)/nButton)-1)*boff) - (prizePos*sx);    
     float ty2 = py - b1;   
-    //button sell gold
+    //button sell iron
     float tx3 = (px + b1) + (sx * ((3*nButton)/nButton)) + ((((3*nButton)/nButton)-1)*boff) - (prizePos*sx);
     float ty3 = py - b1;
-    //button sell diamonds
+    //button sell gold
     float tx4 = (px + b1) + (sx * ((4*nButton)/nButton)) + ((((4*nButton)/nButton)-1)*boff) - (prizePos*sx);
     float ty4 = py - b1;
+    //button sell diamonds
+    float tx5 = (px + b1) + (sx * ((5*nButton)/nButton)) + ((((5*nButton)/nButton)-1)*boff) - (prizePos*sx);
+    float ty5 = py - b1;
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
     util.mainTextUIinventorys();
 
     //show text
-    text("Value:", tx0, ty0);
-    text(stonePrize_, tx1, ty1);
-    text(ironPrize_, tx2, ty2);
-    text(goldPrize_, tx3, ty3);
-    text(diamondPrize_, tx4, ty4);
+    text(woodPrize_, tx1, ty1);
+    text(stonePrize_, tx2, ty2);
+    text(ironPrize_, tx3, ty3);
+    text(goldPrize_, tx4, ty4);
+    text(diamondPrize_, tx5, ty5);
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -298,9 +314,9 @@ class UI {
   //showing HUD via this method
   void show(Player p_, Market m_) {
     //usual
-    mainStats(p_.coins);
+    showMainStats(p_.coins);
     showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size(), p_.inv.wood.size());
-
+    showRestOfUI();
 
     //debug
     if (showDebug == true) {
@@ -311,7 +327,7 @@ class UI {
     }
 
     if (selling == true) {
-      buttonFrameMarket(m_.stonePrize, m_.ironPrize, m_.goldPrize, m_.diamondPrize);
+      buttonFrameMarket(m_.woodPrize, m_.stonePrize, m_.ironPrize, m_.goldPrize, m_.diamondPrize);
     }
   }
 }
