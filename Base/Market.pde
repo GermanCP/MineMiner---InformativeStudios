@@ -1,6 +1,6 @@
 class Market{
   //variables
-    float woodPrize  = 0.5;  //only prize which does not get simulated
+  float woodPrize  = 1;  //only prize which does not get simulated
   float stonePrize;
   float ironPrize;
   float goldPrize;
