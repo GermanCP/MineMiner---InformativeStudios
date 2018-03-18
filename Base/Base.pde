@@ -248,6 +248,8 @@ void ChangeMap() {
       mainMap = overworld;
       mainMap.show(true);
     }
-    player1.pos = startPos;
+    println("done");
+    player1.pos.x = startPos.x;
+    player1.pos.y = startPos.y;
   }
 }
