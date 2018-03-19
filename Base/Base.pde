@@ -20,6 +20,11 @@ What we want to change:
  - be able to refine materials
  - more materials
  - even more materials
+ - underwater map
+ - get to underwater map when diving (map level depends on oxygen system level)
+ - oxygen bar (only shown when under water)
+ - oxygen system for diving
+ - diving equipment for longer dives
  */
 
 //--------------------------------------------------------------------------------------------------
@@ -230,16 +235,16 @@ void resizeDir() {
 //key registering methods
 void keyPressed() {
   //detecting players movement
-  if (keyCode == 38) {
+  if (keyCode == 38 || keyCode == 87) {  //up
     newDir.y = -1;
   }
-  if (keyCode == 40) {  //down
+  if (keyCode == 40 || keyCode == 83) {  //down
     newDir.y = 1;
   }
-  if (keyCode == 37 ) { //left
+  if (keyCode == 37 || keyCode == 65) { //left
     newDir.x = -1;
   }
-  if (keyCode == 39) { //right
+  if (keyCode == 39 || keyCode == 68) { //right
     newDir.x = 1;
   }
   if (keyCode == 130) {
@@ -261,8 +266,8 @@ void keyPressed() {
     player1.changeTool(player1.toolID + 1);
   }
   if (keyCode == 129) {
-    if(state == -1) {
-    state = 0;
+    if (state == -1) {
+      state = 0;
     }
   }
   //println(keyCode); //print keyCode for easier key implementation
@@ -272,15 +277,19 @@ void keyReleased() {
   switch(keyCode) {
     //movement reset
   case 37:
+  case 65:
     newDir.x = 0;
     break;
   case 38:
+  case 83:
     newDir.y = 0;
     break;
   case 39:
+  case 68:
     newDir.x = 0;
     break;
   case 40:
+  case 87:
     newDir.y = 0;
     break;
 
@@ -305,7 +314,7 @@ void mousePressed() {
 
 //--------------------------------------------------------------------------------------------------
 //controlP5 events
-void SellWood(){
+void SellWood() {
   if (player1 != null) {
     player1.inv.sell("wood");
   }

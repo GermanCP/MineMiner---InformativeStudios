@@ -12,6 +12,8 @@ class Player {
   private Inventory inv;
 
   private int coins;
+  
+  public int toolID = 0;
 
   private float r;
   private float lavaDamage = 0.25; //damage per tick
@@ -26,7 +28,9 @@ class Player {
   private boolean wrench  = false;
   private boolean hand    = true;
   
-  public int toolID = 0;
+  //upgrades
+  private boolean divingLv1 = false;
+  private boolean divingLv2 = false;  
   
   private Box cBox   = null;
 
@@ -127,11 +131,11 @@ class Player {
       //right border reached
       return true;
     }
-    if (this.newPos.y <= 0) {
+    if (this.newPos.y <= mainUI.y_UI_bot + player1.r / 2) {
       //upper border reached
       return true;
     }
-    if (this.newPos.y >= height) {
+    if (this.newPos.y >= mainUI.y_debug_UI_top - player1.r / 2) {
       //lower border reached
       return true;
     }
