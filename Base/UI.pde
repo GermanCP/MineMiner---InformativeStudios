@@ -25,12 +25,12 @@ class UI {
   float y_UI_testPos_ressource = 18;
   float y_UI_textPos_debug = 12;
   //healthBar parameter
-  float x_UI_lifeBar_borderRight = x_UI_barrier_1 - x_UI_borderSide *2;
+  float x_UI_lifeBar_borderRight = x_UI_barrier_1 - x_UI_borderSide;
   float x_UI_lifeBar_sizedLife;
   float y_UI_lifeBar_topStroke = 8; //position of top stroke of lifeBar
   float y_UI_lifeBar_botStroke = 12; //height of lifeBar
   //expBar parameter
-  float x_UI_expBar_borderRight = x_UI_barrier_1 - x_UI_borderSide *2;
+  float x_UI_expBar_borderRight = x_UI_barrier_1 - x_UI_borderSide;
   float x_UI_expBar_borderLeft  = x_UI_barrier_1 /2;
   float x_UI_expBar_sizedExp;
   float y_UI_expBar_topStroke = y_UI_textPos_coins - 10;
@@ -62,7 +62,7 @@ class UI {
   }
 
   void updateValues() {
-    x_UI_lifeBar_sizedLife = x_UI_lifeBar_borderRight * (player1.health / 100); //x_lifeBar_borderRight = maximum Life
+    x_UI_lifeBar_sizedLife = (x_UI_lifeBar_borderRight - x_UI_borderSide) * (player1.health / 100) + x_UI_borderSide; //x_lifeBar_borderRight = maximum Life
   }
 
   //--------------------------------------------------------------------------------------------------
