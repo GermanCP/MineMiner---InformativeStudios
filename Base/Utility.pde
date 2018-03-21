@@ -6,7 +6,7 @@ class Utility {
   private PVector buttonSize;
 
   private float off = 10;
-  
+
   private boolean navShow = false;
 
   //--------------------------------------------------------------------------------------------------
@@ -17,15 +17,11 @@ class Utility {
     off = boff_;
   }
 
-  //colorsetups
-  void mainThemeUI() {    //main colorscheme for the UI
-    fill(0, 0, 0, 255);
-    stroke(255);
-  }
-
-  void mainTextUImainStats() {  //main textparameter for current coins for the UI
-    textSize(13);
-    fill(0, 255, 0);
+  //--------------------------------------------------------------------------------------------------
+  //general UI
+  void mainThemeUI() {    //main colorscheme for the UI frames 
+    fill(0, 0, 0, 255);   //color and transperance for UI frames
+    stroke(255);          //stroke for UI frame
   }
 
   void mainTextUIinv() {  //main textparameter for resources for the UI
@@ -33,17 +29,31 @@ class Utility {
     fill(0, 255, 0);
   }
 
-  void mainThemeUIinventorys() { //main colorscheme for temporary UI parts
+  void mainTextUImainStats() {  //main textparameter for current coins for the UI
+    textSize(13);
+    fill(0, 255, 0);
+  }
+
+  //lifebar
+  void lifeBar() {
+    fill(255, 0, 0);
+    noStroke();
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  //market UI
+  void mainThemeUIsellMarket() { //main colorscheme for temporary UI parts
     fill(100, 100, 100);
     stroke(255);
   }
 
-  void mainTextUIinventorys() { //main textparameter for temporary UI parts
+  void mainTextUIsellMarket() { //main textparameter for temporary UI parts
     textSize(12);
     fill(255);
   }
 
-
+  //--------------------------------------------------------------------------------------------------
+  //debug UI
   void mainDebugTextUI() {  //main textparameter for debugtextfor the UI
     textSize(12);
     fill(255, 0, 0);
@@ -54,16 +64,15 @@ class Utility {
     stroke(60);
   }
 
+  //--------------------------------------------------------------------------------------------------
+
   void marker() {            //theme for marker
     fill(0, 0, 200);
     stroke(255);
   }
-
-  void lifeBar() {
-    fill(255, 0, 0);
-    noStroke();
-  }
-
+  
+  //--------------------------------------------------------------------------------------------------
+  //death Theme
   void deathTheme() {
     fill(255, 0, 0, 100);
     stroke(0, 0, 0, 0);
@@ -73,6 +82,8 @@ class Utility {
     fill(255);
     textSize(80);
   }
+
+
 
   //--------------------------------------------------------------------------------------------------
   //Windows to be opened
@@ -218,7 +229,7 @@ class Utility {
   //import files
   void importImages() {
     intro       = loadImage("../textures/intro.png");
-    
+
     stone       = loadImage("../textures/stone.png");
     grass       = loadImage("../textures/grass.png");
     pavement    = loadImage("../textures/pavement.png");

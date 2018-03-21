@@ -252,7 +252,7 @@ class UI {
   //frame for buttons on market when sell
   void buttonFrameMarket(float woodPrize_, float stonePrize_, float ironPrize_, float goldPrize_, float diamondPrize_) {
 
-    util.mainThemeUIinventorys();
+    util.mainThemeUIsellMarket();
 
     //coordinates window
     float nButton = 5; //number of buttons
@@ -282,7 +282,7 @@ class UI {
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
-    util.mainTextUIinventorys();
+    util.mainTextUIsellMarket();
 
     //show text
     text(woodPrize_, tx1, ty1);
