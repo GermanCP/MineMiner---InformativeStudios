@@ -1,6 +1,9 @@
 class UI { 
   //variables
   boolean showDebug = false;
+  boolean toolHand = true;
+  boolean toolPickaxe = false;
+  boolean toolWrench = false;
 
   //window option UI
   float x_UI_barrier_0  = 0;     //UI start stroke
@@ -20,7 +23,7 @@ class UI {
   //window options text pos
   float y_UI_textPos_coins  = 38;
   float y_UI_testPos_ressource = 18;
-  float y_UI_textPos_debug = 10;
+  float y_UI_textPos_debug = 12;
   //healthBar parameter
   float x_UI_lifeBar_borderRight = x_UI_barrier_1 - x_UI_borderSide *2;
   float x_UI_lifeBar_sizedLife;
@@ -32,6 +35,11 @@ class UI {
   float x_UI_expBar_sizedExp;
   float y_UI_expBar_topStroke = y_UI_textPos_coins - 10;
   float y_UI_expBar_botStroke = y_UI_textPos_coins + 1;
+  //toolBar parameter
+  float x_UI_toolBar_frameDistance = 10;
+  float y_UI_toolBar_topStroke = 10;
+  float y_UI_toolBar_botStroke = 35;
+  float x_UI_toolBar_wide = y_UI_toolBar_botStroke - y_UI_toolBar_topStroke;
 
 
 
@@ -86,10 +94,15 @@ class UI {
     float x8 = x_UI_expBar_borderRight;
     float y7 = y_UI_expBar_topStroke;
     float y8 = y_UI_expBar_botStroke;
+    //coordinates blue exp bar 
+    float x9  = x_UI_expBar_borderLeft + 1;
+    float x10 = x_UI_expBar_sizedExp;
+    float y9  = y_UI_expBar_topStroke + 1;
+    float y10 = y_UI_expBar_botStroke;    
 
     //frames
     util.mainThemeUI();
-    quad(x1, y1, x2, y1, x2, y2, x1, y2);  //Position main Frame
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);  //Position 1st main Frame
     quad(x3, y3, x4, y3, x4, y4, x3, y4);  //Position lifeBar Frame
     quad(x7, y7, x8, y7, x8, y8, x7, y8);  //Position expBar Frame
 
@@ -121,8 +134,8 @@ class UI {
 
     //frames
     util.mainThemeUI();
-    quad(x1, y1, x2, y1, x2, y2, x1, y2);
-    
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);  //position 2nd main Frame
+
 
     //show text
     util.mainTextUIressources();
@@ -140,15 +153,51 @@ class UI {
 
   void showRestOfUI() {
 
-    //coordinates window
+    //coordinates frame
     float x1 = x_UI_barrier_2;
     float x2 = x_UI_barrier_3;
     float y1 = y_UI_topStroke;
     float y2 = y_UI_botStroke;
+    //coordinates tool bar frame
+    float nToolBarFrame = 3;
+    float y3 = y_UI_toolBar_topStroke;
+    float y4 = y_UI_toolBar_botStroke;
+    float x3 = x_UI_barrier_2 + x_UI_toolBar_frameDistance + x_UI_toolBar_wide * ((0*nToolBarFrame)/nToolBarFrame) + (1*x_UI_toolBar_frameDistance - x_UI_toolBar_frameDistance);
+    float x4 = x3 + x_UI_toolBar_wide;
+    float x5 = x_UI_barrier_2 + x_UI_toolBar_frameDistance + x_UI_toolBar_wide * ((1*nToolBarFrame)/nToolBarFrame) + (2*x_UI_toolBar_frameDistance - x_UI_toolBar_frameDistance);
+    float x6 = x5 + x_UI_toolBar_wide;
+    float x7 = x_UI_barrier_2 + x_UI_toolBar_frameDistance + x_UI_toolBar_wide * ((2*nToolBarFrame)/nToolBarFrame) + (3*x_UI_toolBar_frameDistance - x_UI_toolBar_frameDistance);
+    float x8 = x7 + x_UI_toolBar_wide;
 
-    //framesv
+
+
+    //frames
     util.mainThemeUI();
-    quad(x1, y1, x2, y1, x2, y2, x1, y2);
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);  //Position 3rd main Frame
+
+    //Position 1st tool Frame
+    if (toolHand == true) {
+      stroke(0, 255, 0);
+    } else {
+      stroke(255);
+    }    
+    quad(x3, y3, x4, y3, x4, y4, x3, y4); 
+
+    //Position 2nd tool Frame
+    if (toolPickaxe == true) {
+      stroke(0, 255, 0);
+    } else {
+      stroke(255);
+    }
+    quad(x5, y3, x6, y3, x6, y4, x5, y4); 
+
+    //Position 3rd tool Frame
+    if (toolWrench == true) {
+      stroke(0, 255, 0);
+    } else {
+      stroke(255);
+    }
+    quad(x7, y3, x8, y3, x8, y4, x7, y4);
   }
 
 
@@ -157,7 +206,7 @@ class UI {
 
   //showing players position as coordinates
   void playerPos(float x_, float y_) {
- 
+
     //coordinates frame
     float x1 = x_UI_barrier_0;
     float x2 = x_UI_debug_barrier_1;
@@ -170,7 +219,7 @@ class UI {
     //frames
     util.mainThemeUI();
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
-    
+
     //show text
     util.mainDebugTextUI();
     text("pos", tx, y1 + ty);
@@ -180,8 +229,6 @@ class UI {
 
   //showing players direction
   void playerDir(float x_, float y_) {
-
-    
 
     //coordinates window
     float x1 = x_UI_debug_barrier_1;
@@ -299,7 +346,7 @@ class UI {
   //--------------------------------------------------------------------------------------------------
   //death
   void deathScreen() {
-    
+
     //tint screen red
     util.deathTheme();
     rect(0, 0, width, height);
@@ -326,7 +373,7 @@ class UI {
     //debug
     if (showDebug == true) {
       playerPos(parseInt(p_.pos.x), parseInt(p_.pos.y));
-      playerDir(parseInt(p_.dir.x), parseInt(p_.dir.y));
+      playerDir(p_.dir.x, p_.dir.y);
       invSpace(parseInt(p_.inv.calcWeight()), parseInt(p_.inv.weightLimit));
       checkBox(p_.checkBoxes());
     }

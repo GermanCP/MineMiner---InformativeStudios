@@ -131,11 +131,11 @@ class Player {
       //right border reached
       return true;
     }
-    if (this.newPos.y <= mainUI.y_UI_bot + player1.r / 2) {
+    if (this.newPos.y <= mainUI.y_UI_botStroke + player1.r / 2) {
       //upper border reached
       return true;
     }
-    if (this.newPos.y >= mainUI.y_debug_UI_top - player1.r / 2) {
+    if (this.newPos.y >= mainUI.y_UI_debug_topStroke - player1.r / 2) {
       //lower border reached
       return true;
     }
@@ -159,12 +159,21 @@ class Player {
     switch(toolID){
       case 0:
       hand = true;
+      mainUI.toolHand = true;
+      mainUI.toolPickaxe = false;
+      mainUI.toolWrench = false;
       break;
       case 1:
       pickaxe = true;
+      mainUI.toolHand = false;
+      mainUI.toolPickaxe = true;
+      mainUI.toolWrench = false;
       break;
       case 2:
       wrench = true;
+      mainUI.toolHand = false;
+      mainUI.toolPickaxe = false;
+      mainUI.toolWrench = true;
       break;
       default:
       toolID = 0;
