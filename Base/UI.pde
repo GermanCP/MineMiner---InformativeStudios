@@ -30,7 +30,7 @@ class UI {
   float x_UI_expBar_borderRight = x_UI_barrier_1 - x_UI_borderSide;
   float x_UI_expBar_borderLeft  = x_UI_barrier_1 /2;
   float x_UI_expBar_sizedExp;
-  float y_UI_expBar_topStroke = y_UI_textPos_coins - 10;
+  float y_UI_expBar_topStroke = y_UI_textPos_coins - 11;
   float y_UI_expBar_botStroke = y_UI_textPos_coins + 1;
   //toolBar parameter
   float x_UI_toolBar_frameDistance = 10;
@@ -60,14 +60,14 @@ class UI {
 
   void updateValues() {
     x_UI_lifeBar_sizedLife = (x_UI_lifeBar_borderRight - x_UI_borderSide) * (player1.health / 100) + x_UI_borderSide;
-    x_UI_expBar_sizedExp = x_UI_expBar_borderLeft + x_UI_expBar_borderRight * (player1.expSys.getXPPercent()) - x_UI_expBar_borderLeft * (player1.expSys.getXPPercent());
+    x_UI_expBar_sizedExp = 1 + x_UI_expBar_borderLeft + x_UI_expBar_borderRight * (player1.expSys.getXPPercent()) - x_UI_expBar_borderLeft * (player1.expSys.getXPPercent());
   }
 
   //--------------------------------------------------------------------------------------------------
   //methodes -> UI windows
 
   //showing the players amount of currency and health
-  void showMainStats(int coins_) {
+  void showMainStats(int coins_, int level_) {
 
     //coordinates frame
     float x1 = x_UI_barrier_0;
@@ -107,6 +107,7 @@ class UI {
     //show text
     util.mainTextUImainStats();
     text("Coins: " + coins_, tx, ty);
+    text(level_, x_UI_expBar_borderLeft - x_UI_borderSide*2, ty);
 
     //lifeBar of player
     util.lifeBar();
@@ -368,7 +369,7 @@ class UI {
   //showing HUD via this method
   void show(Player p_, Market m_) {
     //usual
-    showMainStats(p_.coins);
+    showMainStats(p_.coins, p_.expSys.getLevel());
     showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size(), p_.inv.wood.size());
     showRestOfUI(p_.toolID);
 
