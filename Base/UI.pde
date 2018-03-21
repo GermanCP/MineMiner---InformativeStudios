@@ -26,7 +26,6 @@ class UI {
   float y_lifeBar_barTop = 8; //position of top stroke of lifeBar
   float y_lifeBar_barBot = 5; //height of lifeBar
 
-
   //controlP5 button parameters market
   public float px = 100;
   public float py = 100;
@@ -75,12 +74,17 @@ class UI {
     float x6 = x_lifeBar_sizedLife - 1;
     float y5 = y_lifeBar_barTop;
     float y6 = y_lifeBar_barTop + y_lifeBar_barBot;
+    //coordinates expBar
+    float x7;
+    float x8;
+    float y7;
+    float y8;
 
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
-    fill(0, 0, 0, 0);
-    rect(x3, y3, x4, y4);
+    rect(x3, y3, x4, y4);  //frame for lifeBar
+        
 
     util.mainTextUImainStats();
 
@@ -91,6 +95,7 @@ class UI {
     
     //lifeBar of the player
     rect(x5, y5, x6, y6); //rect(x,y,x,y) topleft, botright
+        
   }
 
   //window show inventory content
