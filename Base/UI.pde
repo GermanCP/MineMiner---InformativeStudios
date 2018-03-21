@@ -1,10 +1,7 @@
 class UI { 
   //variables
   boolean showDebug = false;
-  boolean toolHand = true;
-  boolean toolPickaxe = false;
-  boolean toolWrench = false;
-
+  
   //window option UI
   float x_UI_barrier_0  = 0;     //UI start stroke
   float x_UI_barrier_1  = 250;   //1st UI barrier
@@ -63,7 +60,7 @@ class UI {
 
   void updateValues() {
     x_UI_lifeBar_sizedLife = (x_UI_lifeBar_borderRight - x_UI_borderSide) * (player1.health / 100) + x_UI_borderSide;
-    //x_UI_expBar_sizedExp = ;
+    x_UI_expBar_sizedExp = x_UI_expBar_borderLeft + x_UI_expBar_borderRight * (player1.expSys.exp / 100) - x_UI_expBar_borderLeft * (player1.expSys.exp / 100);
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -117,7 +114,7 @@ class UI {
     
     //expBar of player
     util.expBar();
-    //quad(x9, y9, x10, y9, x10, y10, x9, y10);
+    quad(x9, y9, x10, y9, x10, y10, x9, y10); //Position blue exp bar
   }
 
   //window show inventory content
