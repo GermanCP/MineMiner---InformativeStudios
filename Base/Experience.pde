@@ -1,13 +1,13 @@
 class Experience {
   //variables
-  int level  = 0;
+  private int level  = 0;
 
-  float exp    = 0;
-  float target = 50;
-  float increment = 0.35;
+  private float exp    = 0;
+  private float target = 50;
+  private float increment = 0.35;
 
   //experience values
-  float[] xpValues = {0.1, 0.2, 0.5, 1, 2};
+  private float[] xpValues = {0.1, 0.2, 0.5, 1, 2};
   //basic, metals, gems,
 
   //--------------------------------------------------------------------------------------------------

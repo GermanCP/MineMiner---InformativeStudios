@@ -1,6 +1,8 @@
 class Mob{
   //variables
-  
+  private PVector pos  = new PVector();
+  private PVector targ = new PVector();  
+    
   //--------------------------------------------------------------------------------------------------
   //constructor
   Mob(){
