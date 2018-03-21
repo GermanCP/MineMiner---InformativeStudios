@@ -11,6 +11,10 @@
 What we want to change:
  - slim code, do more cleanup, even more cleanup
  - refine market
+ - add tools in item class
+ - add weapons (ranged)
+ - add crafting system
+ - add upgrade system (new tools, recipies, buildings)
  - add more textures
  - add buildings
  - add other textures, change textures

@@ -60,7 +60,7 @@ class UI {
 
   void updateValues() {
     x_UI_lifeBar_sizedLife = (x_UI_lifeBar_borderRight - x_UI_borderSide) * (player1.health / 100) + x_UI_borderSide;
-    x_UI_expBar_sizedExp = x_UI_expBar_borderLeft + x_UI_expBar_borderRight * (player1.expSys.exp / 100) - x_UI_expBar_borderLeft * (player1.expSys.exp / 100);
+    x_UI_expBar_sizedExp = x_UI_expBar_borderLeft + x_UI_expBar_borderRight * (player1.expSys.getXPPercent()) - x_UI_expBar_borderLeft * (player1.expSys.getXPPercent());
   }
 
   //--------------------------------------------------------------------------------------------------
