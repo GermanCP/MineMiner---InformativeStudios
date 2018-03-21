@@ -32,7 +32,8 @@ class Player {
   private boolean divingLv1 = false;
   private boolean divingLv2 = false;  
   
-  private Box cBox   = null;
+  private Box cBox         = null;
+  public Experience expSys = new Experience();
 
   //---------------------------------------------------------------------------
   //constructor  

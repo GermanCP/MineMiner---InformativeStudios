@@ -25,4 +25,18 @@ class Experience{
   float newTarget(){
     return target + target * increment;
   }
+  
+  //--------------------------------------------------------------------------------------------------
+  //get methods
+  int getLevel(){
+   return level; 
+  }
+  
+  float getXPPercent(){
+    float percent;
+    
+    percent = this.exp / target;
+    
+    return percent;
+  }
 }
