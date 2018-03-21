@@ -56,7 +56,7 @@ class Map {
         //setting terrain type corresponding to colour
         if (col == -1) {                      //white - walkable
           terrain[i] = 1;
-        } else if (col == -16777216) {        //black
+        } else if (col == -16777216) {        //black - stone
           terrain[i] = 2;
         } else if (col == -1703810) {         //pink - iron
           terrain[i] = 3;

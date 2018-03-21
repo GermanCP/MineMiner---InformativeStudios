@@ -39,7 +39,7 @@ class Utility {
     fill(255, 0, 0);
     noStroke();
   }
-  
+
   //expBar
   void expBar() {
     fill(0, 109, 255);
@@ -76,7 +76,7 @@ class Utility {
     fill(0, 0, 200);
     stroke(255);
   }
-  
+
   //--------------------------------------------------------------------------------------------------
   //death Theme
   void deathTheme() {
@@ -179,7 +179,10 @@ class Utility {
     b_.show(true);
 
     if (tmpType != 1) {
-      player1.inv.add(new Item(tmpType));
+      Item tmpItem = new Item(tmpType);
+
+      player1.inv.add(tmpItem);
+      player1.expSys.gainXP(tmpItem.itemClass);
     }
   }
 
