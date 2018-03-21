@@ -3,28 +3,37 @@ class UI {
   boolean showDebug = false;
 
   //window option UI
-  float x_UI = 0;
-  float x_UI_w1  = 250;   //w1 = end of first window, start of second window
-  float x_UI_w2  = 500;   //w2 = look above
-  float x_UI_w3  = 1000;
-  float y_UI_top = 0;     //differenz between y_UI_bot and y_UI_top = window height
-  float y_UI_bot = 45;
+  float x_UI_barrier_0  = 0;     //UI start stroke
+  float x_UI_barrier_1  = 250;   //1st UI barrier
+  float x_UI_barrier_2  = 500;   //2nd UI barrier
+  float x_UI_barrier_3  = 1000;  //3rd UI barrier
+  float y_UI_topStroke = 0;      //y_UI_botStroke - y_UI_topStroke = UI hight
+  float y_UI_botStroke = 45;
+  float x_UI_borderSide  = 10;
   //window option DebugUI
-  float x_debug_UI_w1   = 70;
-  float x_debug_UI_w2   = 140;
-  float x_debug_UI_w3   = 210;
-  float x_debug_UI_w4   = 280;
-  float y_debug_UI_top;
-  float y_debug_UI_bot;
+  float x_UI_debug_barrier_1   = 70;
+  float x_UI_debug_barrier_2   = 140;
+  float x_UI_debug_barrier_3   = 210;
+  float x_UI_debug_barrier_4   = 280;
+  float y_UI_debug_topStroke;
+  float y_UI_debug_botStroke;
   //window options text pos
-  float x_UI_text       = 10;
-  float y_UI_text_mainStats  = 38;
-  float y_debug_UI_text = 12;
+  float y_UI_textPos_coins  = 38;
+  float y_UI_testPos_ressource = 18;
+  float y_UI_textPos_debug = 10;
   //healthBar parameter
-  float x_lifeBar_maxSize = x_UI_w1 - x_UI_text * 2;
-  float x_lifeBar_sizedLife;
-  float y_lifeBar_barTop = 8; //position of top stroke of lifeBar
-  float y_lifeBar_barBot = 5; //height of lifeBar
+  float x_UI_lifeBar_borderRight = x_UI_barrier_1 - x_UI_borderSide *2;
+  float x_UI_lifeBar_sizedLife;
+  float y_UI_lifeBar_topStroke = 8; //position of top stroke of lifeBar
+  float y_UI_lifeBar_botStroke = 12; //height of lifeBar
+  //expBar parameter
+  float x_UI_expBar_borderRight = x_UI_barrier_1 - x_UI_borderSide *2;
+  float x_UI_expBar_borderLeft  = x_UI_barrier_1 /2;
+  float x_UI_expBar_sizedExp;
+  float y_UI_expBar_topStroke = y_UI_textPos_coins - 10;
+  float y_UI_expBar_botStroke = y_UI_textPos_coins + 1;
+
+
 
   //controlP5 button parameters market
   public float px = 100;
@@ -40,12 +49,12 @@ class UI {
   //--------------------------------------------------------------------------------------------------
   //constructor
   UI() {    
-    y_debug_UI_top = height - 40;
-    y_debug_UI_bot = height;
+    y_UI_debug_topStroke = height - 40;
+    y_UI_debug_botStroke = height;
   }
 
   void updateValues() {
-    x_lifeBar_sizedLife = x_lifeBar_maxSize * (player1.health / 100);
+    x_UI_lifeBar_sizedLife = x_UI_lifeBar_borderRight * (player1.health / 100); //x_lifeBar_borderRight = maximum Life
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -54,75 +63,69 @@ class UI {
   //showing the players amount of currency and health
   void showMainStats(int coins_) {
 
-    util.mainThemeUI();
-
-    //coordinates window
-    float x1 = x_UI;
-    float x2 = x_UI_w1;
-    float y1 = y_UI_top;
-    float y2 = y_UI_bot;
+    //coordinates frame
+    float x1 = x_UI_barrier_0;
+    float x2 = x_UI_barrier_1;
+    float y1 = y_UI_topStroke;
+    float y2 = y_UI_botStroke;
     //coordinates text
-    float tx = x_UI_text;
-    float ty = y_UI_text_mainStats;
+    float tx = x_UI_borderSide;
+    float ty = y_UI_textPos_coins;
     //coordinates lifebar frame
-    float x3 = x_UI_text;
-    float x4 = x_lifeBar_maxSize;
-    float y3 = y_lifeBar_barTop - 1;
-    float y4 = y_lifeBar_barTop + y_lifeBar_barBot + 1;
-    //coordinates lifebar 
-    float x5 = x_UI_text + 1;
-    float x6 = x_lifeBar_sizedLife - 1;
-    float y5 = y_lifeBar_barTop;
-    float y6 = y_lifeBar_barTop + y_lifeBar_barBot;
-    //coordinates expBar
-    float x7;
-    float x8;
-    float y7;
-    float y8;
+    float x3 = x_UI_borderSide;
+    float x4 = x_UI_lifeBar_borderRight;
+    float y3 = y_UI_lifeBar_topStroke;
+    float y4 = y_UI_lifeBar_topStroke + y_UI_lifeBar_botStroke;
+    //coordinates red life bar frame
+    float x5 = x_UI_borderSide + 1;
+    float x6 = x_UI_lifeBar_sizedLife;
+    float y5 = y_UI_lifeBar_topStroke + 1;
+    float y6 = y_UI_lifeBar_topStroke + y_UI_lifeBar_botStroke;
+    //coordinates exp bar frame
+    float x7 = x_UI_expBar_borderLeft;
+    float x8 = x_UI_expBar_borderRight;
+    float y7 = y_UI_expBar_topStroke;
+    float y8 = y_UI_expBar_botStroke;
 
-
-    quad(x1, y1, x2, y1, x2, y2, x1, y2);
-
-    rect(x3, y3, x4, y4);  //frame for lifeBar
-        
-
-    util.mainTextUImainStats();
+    //frames
+    util.mainThemeUI();
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);  //Position main Frame
+    quad(x3, y3, x4, y3, x4, y4, x3, y4);  //Position lifeBar Frame
+    quad(x7, y7, x8, y7, x8, y8, x7, y8);  //Position expBar Frame
 
     //show text
+    util.mainTextUImainStats();
     text("Coins: " + coins_, tx, ty);
 
-    util.lifeBar();
-    
     //lifeBar of the player
-    rect(x5, y5, x6, y6); //rect(x,y,x,y) topleft, botright
-        
+    util.lifeBar();
+    quad(x5, y5, x6, y5, x6, y6, x5, y6); //Position red life bar
   }
 
   //window show inventory content
   void showInv(int stone_, int iron_, int gold_, int diamond_, int wood_) {
 
-    util.mainThemeUI();
-
-    //coordinates window
-    float x1 = x_UI_w1;
-    float x2 = x_UI_w2;
-    float y1 = y_UI_top;
-    float y2 = y_UI_bot;
+    //coordinates frame
+    float x1 = x_UI_barrier_1;
+    float x2 = x_UI_barrier_2;
+    float y1 = y_UI_topStroke;
+    float y2 = y_UI_botStroke;
     //coordinates text
-    float tx0 =  x1 + x_UI_text;  //1st text fields, wood_ and iron_
-    float tx1 = 50;   //1st number of items, wood_ and iron_
-    float tx2 = 75;   //2nd text fields, stone_ and gold_
-    float tx3 = 120;  //2nd number of items, stone_ and gold_
-    float tx4 = 145;  //3rd text fields, diamond_
-    float tx5 = 215;  //3rd number of items, diamond_
-    float ty = y_debug_UI_text + 6;  //top border distance
+    float tx0 = x1 + x_UI_borderSide;    //1st text fields, wood_ and iron_
+    float tx1 = 50;                      //1st number of items, wood_ and iron_
+    float tx2 = 75;                      //2nd text fields, stone_ and gold_
+    float tx3 = 120;                     //2nd number of items, stone_ and gold_
+    float tx4 = 145;                     //3rd text fields, diamond_
+    float tx5 = 215;                     //3rd number of items, diamond_
+    float ty  = y_UI_testPos_ressource;  //top border distance
 
+    //frames
+    util.mainThemeUI();
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
-
-
-    util.mainTextUIinv();
+    
 
     //show text
+    util.mainTextUIressources();
     text("Wood:", tx0, ty);
     text(wood_, tx0 + tx1, ty);
     text("Stone:", tx0 + tx2, ty);
@@ -133,47 +136,43 @@ class UI {
     text(gold_, tx0 + tx3, ty*2);
     text("Diamond:", tx0 + tx4, ty*2);
     text(diamond_, tx0 + tx5, ty*2);
-    
   }
-  
+
   void showRestOfUI() {
-    
-    util.mainThemeUI();
-    
+
     //coordinates window
-    float x1 = x_UI_w2;
-    float x2 = x_UI_w3;
-    float y1 = y_UI_top;
-    float y2 = y_UI_bot;
-    
+    float x1 = x_UI_barrier_2;
+    float x2 = x_UI_barrier_3;
+    float y1 = y_UI_topStroke;
+    float y2 = y_UI_botStroke;
+
+    //framesv
+    util.mainThemeUI();
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
-    
-        
   }
 
 
   //--------------------------------------------------------------------------------------------------
   //Debug windows
 
-  //showing the players position coordinates
+  //showing players position as coordinates
   void playerPos(float x_, float y_) {
-
-    util.mainThemeUI();
-
-    //coordinates window
-    float x1 = x_UI;
-    float x2 = x_debug_UI_w1;
-    float y1 = y_debug_UI_top;
-    float y2 = y_debug_UI_bot;
+ 
+    //coordinates frame
+    float x1 = x_UI_barrier_0;
+    float x2 = x_UI_debug_barrier_1;
+    float y1 = y_UI_debug_topStroke;
+    float y2 = y_UI_debug_botStroke;
     //coordinates text
-    float tx = x_UI_text;  // distance from left side stroke
-    float ty = y_debug_UI_text;  //distance from top stroke
+    float tx = x_UI_borderSide;      // distance from left side stroke
+    float ty = y_UI_textPos_debug;   //distance from top stroke
 
+    //frames
+    util.mainThemeUI();
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
-
-    util.mainDebugTextUI();
-
+    
     //show text
+    util.mainDebugTextUI();
     text("pos", tx, y1 + ty);
     text("x: " + x_, tx, y1 + ty*2);
     text("y: " + y_, tx, y1 + ty*3);
@@ -182,22 +181,23 @@ class UI {
   //showing players direction
   void playerDir(float x_, float y_) {
 
-    util.mainThemeUI();
+    
 
     //coordinates window
-    float x1 = x_debug_UI_w1;
-    float x2 = x_debug_UI_w2;
-    float y1 = y_debug_UI_top;
-    float y2 = y_debug_UI_bot;
+    float x1 = x_UI_debug_barrier_1;
+    float x2 = x_UI_debug_barrier_2;
+    float y1 = y_UI_debug_topStroke;
+    float y2 = y_UI_debug_botStroke;
     //coordinates text
-    float tx = x_debug_UI_w1 + x_UI_text;  // distance from left side stroke
-    float ty = y_debug_UI_text;  //distance from top stroke
+    float tx = x_UI_debug_barrier_1 + x_UI_borderSide;  // distance from left side stroke
+    float ty = y_UI_textPos_debug;                      //distance from top stroke
 
+    //frames
+    util.mainThemeUI();
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
-    util.mainDebugTextUI();
-
     //show text
+    util.mainDebugTextUI();
     text("dir", tx, y1 + ty);
     text(x_, tx, y1 + ty*2);
     text(y_, tx, y1 + ty*3);
@@ -206,22 +206,21 @@ class UI {
   //showing players inventory space
   void invSpace(float invSpace_, float maxSpace_) {
 
-    util.mainThemeUI();
-
     //coordinates window
-    float x1 = x_debug_UI_w2;
-    float x2 = x_debug_UI_w3;
-    float y1 = y_debug_UI_top;
-    float y2 = y_debug_UI_bot;
+    float x1 = x_UI_debug_barrier_2;
+    float x2 = x_UI_debug_barrier_3;
+    float y1 = y_UI_debug_topStroke;
+    float y2 = y_UI_debug_botStroke;
     //coordinates text
-    float tx = x_debug_UI_w2 + x_UI_text;  // distance from left side stroke
-    float ty = y_debug_UI_text;  //distance from top stroke
+    float tx = x_UI_debug_barrier_2 + x_UI_borderSide;  // distance from left side stroke
+    float ty = y_UI_textPos_debug;  //distance from top stroke
 
+    //frames
+    util.mainThemeUI();
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
-    util.mainDebugTextUI();
-
     //show text
+    util.mainDebugTextUI();
     text("InvSpace", tx, y1 + ty);
     text(invSpace_, tx, y1 + ty*2);
     text(maxSpace_, tx, y1 + ty*3);
@@ -230,17 +229,17 @@ class UI {
   //show check boxes
   void checkBox(int checkBox_) {
 
-    util.mainThemeUI();
-
     //coordinates window
-    float x1 = x_debug_UI_w3;
-    float x2 = x_debug_UI_w4;
-    float y1 = y_debug_UI_top;
-    float y2 = y_debug_UI_bot;
+    float x1 = x_UI_debug_barrier_3;
+    float x2 = x_UI_debug_barrier_4;
+    float y1 = y_UI_debug_topStroke;
+    float y2 = y_UI_debug_botStroke;
     //coordinates text
-    float tx = x_debug_UI_w3 + x_UI_text;
-    float ty = y_debug_UI_text;
+    float tx = x_UI_debug_barrier_3 + x_UI_borderSide;
+    float ty = y_UI_textPos_debug;
 
+    //frames
+    util.mainThemeUI();
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
     util.mainDebugTextUI();
@@ -263,27 +262,27 @@ class UI {
     float nButton = 5; //number of buttons
     float nDistanceButtons = nButton - 1; //number of distances between buttons
     float prizePos = 0.75;
-    float b1 = 3; //border distance
-    float x1 = px - b1;
-    float x2 = px + nButton*sx + nDistanceButtons*boff + b1;
+    float buttonDistance = 3; //border distance
+    float x1 = px - buttonDistance;
+    float x2 = px + nButton*sx + nDistanceButtons*boff + buttonDistance;
     float y1 = py - 16;
-    float y2 = py + sy + b1;
+    float y2 = py + sy + buttonDistance;
     //coordinates text
     //button sell wood
-    float tx1 = (px + b1) + (sx * ((1*nButton)/nButton)) + ((((1*nButton)/nButton)-1)*boff) - (prizePos*sx); //just dont ask
-    float ty1 = py - b1;
+    float tx1 = (px + buttonDistance) + (sx * ((1*nButton)/nButton)) + ((((1*nButton)/nButton)-1)*boff) - (prizePos*sx); //just dont ask
+    float ty1 = py - buttonDistance;
     //button sell stone
-    float tx2 = (px + b1) + (sx * ((2*nButton)/nButton)) + ((((2*nButton)/nButton)-1)*boff) - (prizePos*sx);    
-    float ty2 = py - b1;   
+    float tx2 = (px + buttonDistance) + (sx * ((2*nButton)/nButton)) + ((((2*nButton)/nButton)-1)*boff) - (prizePos*sx);    
+    float ty2 = py - buttonDistance;   
     //button sell iron
-    float tx3 = (px + b1) + (sx * ((3*nButton)/nButton)) + ((((3*nButton)/nButton)-1)*boff) - (prizePos*sx);
-    float ty3 = py - b1;
+    float tx3 = (px + buttonDistance) + (sx * ((3*nButton)/nButton)) + ((((3*nButton)/nButton)-1)*boff) - (prizePos*sx);
+    float ty3 = py - buttonDistance;
     //button sell gold
-    float tx4 = (px + b1) + (sx * ((4*nButton)/nButton)) + ((((4*nButton)/nButton)-1)*boff) - (prizePos*sx);
-    float ty4 = py - b1;
+    float tx4 = (px + buttonDistance) + (sx * ((4*nButton)/nButton)) + ((((4*nButton)/nButton)-1)*boff) - (prizePos*sx);
+    float ty4 = py - buttonDistance;
     //button sell diamonds
-    float tx5 = (px + b1) + (sx * ((5*nButton)/nButton)) + ((((5*nButton)/nButton)-1)*boff) - (prizePos*sx);
-    float ty5 = py - b1;
+    float tx5 = (px + buttonDistance) + (sx * ((5*nButton)/nButton)) + ((((5*nButton)/nButton)-1)*boff) - (prizePos*sx);
+    float ty5 = py - buttonDistance;
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
@@ -300,9 +299,9 @@ class UI {
   //--------------------------------------------------------------------------------------------------
   //death
   void deathScreen() {
+    
     //tint screen red
     util.deathTheme();
-
     rect(0, 0, width, height);
 
     //draw "YOU DIED" text

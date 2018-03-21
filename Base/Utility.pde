@@ -24,7 +24,7 @@ class Utility {
     stroke(255);          //stroke for UI frame
   }
 
-  void mainTextUIinv() {  //main textparameter for resources for the UI
+  void mainTextUIressources() {  //main textparameter for resources for the UI
     textSize(12);
     fill(0, 255, 0);
   }
