@@ -62,7 +62,8 @@ class UI {
   }
 
   void updateValues() {
-    x_UI_lifeBar_sizedLife = (x_UI_lifeBar_borderRight - x_UI_borderSide) * (player1.health / 100) + x_UI_borderSide; //x_lifeBar_borderRight = maximum Life
+    x_UI_lifeBar_sizedLife = (x_UI_lifeBar_borderRight - x_UI_borderSide) * (player1.health / 100) + x_UI_borderSide;
+    //x_UI_expBar_sizedExp = ;
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -110,9 +111,13 @@ class UI {
     util.mainTextUImainStats();
     text("Coins: " + coins_, tx, ty);
 
-    //lifeBar of the player
+    //lifeBar of player
     util.lifeBar();
     quad(x5, y5, x6, y5, x6, y6, x5, y6); //Position red life bar
+    
+    //expBar of player
+    util.expBar();
+    //quad(x9, y9, x10, y9, x10, y10, x9, y10);
   }
 
   //window show inventory content
