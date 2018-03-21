@@ -159,21 +159,12 @@ class Player {
     switch(toolID){
       case 0:
       hand = true;
-      mainUI.toolHand = true;
-      mainUI.toolPickaxe = false;
-      mainUI.toolWrench = false;
-      break;
+       break;
       case 1:
       pickaxe = true;
-      mainUI.toolHand = false;
-      mainUI.toolPickaxe = true;
-      mainUI.toolWrench = false;
       break;
       case 2:
       wrench = true;
-      mainUI.toolHand = false;
-      mainUI.toolPickaxe = false;
-      mainUI.toolWrench = true;
       break;
       default:
       toolID = 0;

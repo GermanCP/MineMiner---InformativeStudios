@@ -151,7 +151,7 @@ class UI {
     text(diamond_, tx0 + tx5, ty*2);
   }
 
-  void showRestOfUI() {
+  void showRestOfUI(int toolID) {
 
     //coordinates frame
     float x1 = x_UI_barrier_2;
@@ -176,7 +176,7 @@ class UI {
     quad(x1, y1, x2, y1, x2, y2, x1, y2);  //Position 3rd main Frame
 
     //Position 1st tool Frame
-    if (toolHand == true) {
+    if (toolID == 0) {
       stroke(0, 255, 0);
     } else {
       stroke(255);
@@ -184,7 +184,7 @@ class UI {
     quad(x3, y3, x4, y3, x4, y4, x3, y4); 
 
     //Position 2nd tool Frame
-    if (toolPickaxe == true) {
+    if (toolID == 1) {
       stroke(0, 255, 0);
     } else {
       stroke(255);
@@ -192,7 +192,7 @@ class UI {
     quad(x5, y3, x6, y3, x6, y4, x5, y4); 
 
     //Position 3rd tool Frame
-    if (toolWrench == true) {
+    if (toolID == 2) {
       stroke(0, 255, 0);
     } else {
       stroke(255);
@@ -368,7 +368,7 @@ class UI {
     //usual
     showMainStats(p_.coins);
     showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size(), p_.inv.wood.size());
-    showRestOfUI();
+    showRestOfUI(p_.toolID);
 
     //debug
     if (showDebug == true) {
