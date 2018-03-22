@@ -32,7 +32,7 @@ class Experience {
 
   //--------------------------------------------------------------------------------------------------
   //gain experience
-  void gainXP(String arg) {
+  void gainXP(String arg) {  //detects type of action and adds appropriate amount of exp
     switch(arg) {
     case "basic":
       exp += xpValues[0];

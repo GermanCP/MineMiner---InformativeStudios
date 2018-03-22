@@ -22,6 +22,7 @@ What we want to change:
  - add more maps
  - add ability to walk from one map to the other
  - add tool class and functionality such as buying them
+ - add JSON files such as config for cleaner code
  - be able to refine materials
  - more materials
  - even more materials
@@ -98,6 +99,8 @@ public PImage water;
 public PImage lava;
 
 public PImage market;
+
+public PImage player;
 
 //--------------------------------------------------------------------------------------------------
 //main class body
@@ -228,7 +231,7 @@ void draw() {
 }
 //--------------------------------------------------------------------------------------------------
 //methods
-void resizeDir() {
+void resizeDir() {  //calculating the direction the player should move
   if (newDir.x < 0) {
     newDir.x = -1;
   } else if (newDir.x > 0) {

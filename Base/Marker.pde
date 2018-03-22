@@ -17,7 +17,7 @@ class Marker{
   //--------------------------------------------------------------------------------------------------
   //methods
   
-  void show(){
+  void show(){ //shows a blue circle at this.pos
     util.marker();
     ellipse(this.pos.x, this.pos.y, this.r, this.r);
   }

@@ -15,20 +15,22 @@ class Item {
 
   //--------------------------------------------------------------------------------------------------
   //main method body
-  void determineClass(int type_){
+  void determineClass(int type_){  //this method determines what class the item belongs to according to the type variable
     switch(type_){
+      //basic materials
       case 2:
       case 6:
-      //basic materials
       itemClass = "basic";
       break;
+      
+      //metals
       case 3:
       case 4:
-      //metals
       itemClass = "metals";
       break;
-      case 5:
+      
       //gems
+      case 5:
       itemClass = "gems";
       break;
       default:

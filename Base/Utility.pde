@@ -258,5 +258,7 @@ class Utility {
     lava        = loadImage("../textures/lava.png");
 
     market      = loadImage("../textures/market.png");
+    
+    player      = loadImage("../textures/player/player.png");
   }
 }

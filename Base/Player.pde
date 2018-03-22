@@ -8,6 +8,7 @@ class Player {
   private PVector newPos  = new PVector();
   private PVector pos     = new PVector();
   private PVector gridPos = new PVector();
+  private PVector look    = new PVector();
 
   private Inventory inv;
 
@@ -53,6 +54,12 @@ class Player {
   //main method body
   void move(PVector arg) { //updating the players movement
     this.dir = arg;
+
+    //update rotation of player graphic
+    if (dir.x != 0 || dir.y != 0) {
+      this.look.x = dir.x;
+      this.look.y = dir.y;
+    }
 
     this.newPos.x = this.pos.x;
     this.newPos.y = this.pos.y;
@@ -257,14 +264,51 @@ class Player {
     stroke(255, 255, 255, 100);
     ellipse(this.pos.x, this.pos.y, intRadius * 2, intRadius * 2);
 
+    float angle = calcLook();
+
     //show player
-    fill(255, 0, 0);
-    stroke(0);
-    ellipse(this.pos.x, this.pos.y, r, r);
+    pushMatrix();
+    imageMode(CENTER);
+    translate(this.pos.x, this.pos.y);
+    rotate(angle);
+    image(player, 0, 0, this.r, this.r);
+    popMatrix();
+    imageMode(CORNER);
 
     //check distance to open interactable
     if (cBox != null) {
       util.keepOpen(cBox);
     }
+  }
+
+  float calcLook() {
+    if (look.x == 0 && look.y == 0) {
+      //none
+    } else if (look.x == 1 && look.y == 0) {
+      //right
+      return  PI / 2;
+    } else if (look.x == -1 && look.y == 0) {
+      //left
+      return - PI / 2;
+    } else if (look.x == 0 && look.y == 1) {
+      //down
+      return PI;
+    } else if (look.x == 1 && look.y == 1) {
+      //down right
+      return (PI / 4) * 3;
+    } else if (look.x == -1 && look.y == 1) {
+      //down left
+      return -(PI / 4) * 3;
+    } else if (look.x == 0 && look.y == -1) {
+      //up
+      return 0;
+    } else if (look.x == 1 && look.y == -1) {
+      //up right
+      return (PI / 4);
+    } else if (look.x == -1 && look.y == -1) {
+      //up left
+      return -(PI / 4);
+    }
+    return 0;
   }
 }

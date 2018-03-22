@@ -15,7 +15,7 @@ class Animations {
 
   //--------------------------------------------------------------------------------------------------
   //methods
-  void respawnTimer() {
+  void respawnTimer() { //plays revive transition
     time += inc;
 
     if (mainMap == overworld) {
@@ -32,7 +32,7 @@ class Animations {
     rect(0, 0, width, height);
   }
   
-  void introTimer(){
+  void introTimer(){ //plays intro
    inttime += intinc;
    intshow -= intinc;
    
