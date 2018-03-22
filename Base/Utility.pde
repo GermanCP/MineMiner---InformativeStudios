@@ -74,7 +74,7 @@ class Utility {
 
   void marker() {            //theme for marker
     fill(0, 0, 200);
-    stroke(255);
+    stroke(0, 0, 200);
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -212,12 +212,20 @@ class Utility {
   //--------------------------------------------------------------------------------------------------
   //checkmethods
   void checkRange(PVector pos_) {
-    if (player1.pos.dist(pos_) <= intRadius && navShow == false) {
-      nav.show();
-      navShow = true;
-    } else if (player1.pos.dist(pos_) > intRadius && navShow == true) {
+    if (mainMap == overworld || mainMap == underworld[0]) {
+      //distance checks
+      if (player1.pos.dist(pos_) <= intRadius && navShow == false) {
+        nav.show();
+        navShow = true;
+      } else if (player1.pos.dist(pos_) > intRadius && navShow == true) {
+        nav.hide();
+        if (mainMap.type == "overworld") {
+          mainMap.show(true);
+        }
+        navShow = false;
+      }
+    } else {
       nav.hide();
-      mainMap.show(true);
       navShow = false;
     }
   }

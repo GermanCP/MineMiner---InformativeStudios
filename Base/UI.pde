@@ -378,7 +378,7 @@ class UI {
       playerPos(parseInt(p_.pos.x), parseInt(p_.pos.y));
       playerDir(p_.dir.x, p_.dir.y);
       invSpace(parseInt(p_.inv.calcWeight()), parseInt(p_.inv.weightLimit));
-      checkBox(p_.checkBoxes());
+      checkBox(p_.checkBoxes(p_.newPos, mainMap));
     }
 
     if (selling == true) {

@@ -5,6 +5,7 @@
  Alpha 1.0 - 912  lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility                     - 9 classes
  Alpha 1.1 - 1074 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility, Marker             - 10 classes
  Alpha 1.2 - 1481 lines of code - Base, Animations, Box, Inventory, Item, Map, Marker, Market, Player, UI, Utility - 11 classes
+ Alpha 1.3 - 1937 lines of code - Base, Animations, Box, Experience, Inventory, Item, Map, Marker, Market, Mob, Player, Questing, UI, Utility - 14 classes
  */
 
 /*
@@ -49,7 +50,7 @@ private int ccicle   = 0;
 
 public int state = -1;
 
-public float intRadius = 100;
+public float intRadius = 50;
 
 private boolean fogOfWar    = true;
 private boolean showMarkers = true;
@@ -60,12 +61,20 @@ public boolean respawned = false;
 private PVector startPos = new PVector(100, 100);
 private PVector newDir = new PVector();
 
+//map sizes
+private PVector overworldSize  = new PVector(1, 1);
+private PVector underworldSize = new PVector(3, 3);
+
 //istances of custom classes
 public UI mainUI;
 public Player player1;
 public Map mainMap;
-public Map underworld1;
+
+//Maps
 public Map overworld;
+
+public Map[] underworld = new Map[9];
+
 public Utility util;
 public Animations anim;
 public Marker start;
@@ -120,10 +129,12 @@ void setup() {
   player1 = new Player(startPos.x, startPos.y, 20, 100);
 
   //mainMap
-  underworld1 = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
+  for(int i = 0; i < underworld.length; i++){
+  underworld[i] = new Map(width, height, tileSize, tileSize, "../textures/maps/underworld" + i + ".png", i, underworldSize, "underworld");
+  }
 
   //overworld
-  overworld = new Map(width, height, tileSize, tileSize, "../textures/maps/overworld.png");
+  overworld = new Map(width, height, tileSize, tileSize, "../textures/maps/overworld.png", 0, overworldSize, "overworld");
 
   //mainMap
   mainMap = overworld;
@@ -153,7 +164,7 @@ void draw() {
   //game starts
   else if (state == 0) {
     state = 1;
-    if (mainMap == overworld) {
+    if (mainMap.type == "overworld") {
       mainMap.show(true);
     }
     return;
@@ -179,7 +190,7 @@ void draw() {
       return;
     }
 
-    if (fogOfWar && mainMap == underworld1) {
+    if (fogOfWar && mainMap.type == "underworld") {
       background(0);
     }
 
@@ -191,7 +202,7 @@ void draw() {
 
     //markers
     if (showMarkers) {
-      if (mainMap == underworld1 || mainMap == overworld) {
+      if (mainMap == underworld[0] || mainMap == overworld) {
         start.show();
       }
     }
@@ -351,7 +362,7 @@ void SellDiamond() {
 void ChangeMap() {
   if (player1 != null) {
     if (mainMap == overworld) {
-      mainMap = underworld1;
+      mainMap = underworld[0];
     } else {
       mainMap = overworld;
       mainMap.show(true);

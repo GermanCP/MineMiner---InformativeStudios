@@ -108,7 +108,7 @@ class Player {
 
   //--------------------------------------------------------------------------------------------------
   //move between maps
-  boolean moveMap(String arg) {  //moves the player to an adjacent map
+  boolean moveMap(String arg) {
     int index;
     index = mainMap.id;
 
@@ -125,12 +125,12 @@ class Player {
 
     case "up":
       index -= mainMap.size.x;
-      this.newPos.y += height - (r / 2 + mainUI.y_UI_botStroke);
+      this.newPos.y -= height - r / 2;
       break;
 
     case "down":
       index += mainMap.size.x;
-      this.newPos.y -= height - ((r / 2) + mainUI.y_UI_botStroke);
+      this.newPos.y += height - r / 2;
       break;
 
     default:
@@ -142,13 +142,12 @@ class Player {
   }
 
 
-  void changeMaptoIndex(int index_) {  //changes the mainMap to a map with the given index
+  void changeMaptoIndex(int index_) {
     if (mainMap.type == "underworld" && checkBoxes(newPos, underworld[index_]) != 1) {
       mainMap = underworld[index_];
     } else {
       return;
     }
-
     //update position
     this.pos.x = this.newPos.x;
     this.pos.y = this.newPos.y;

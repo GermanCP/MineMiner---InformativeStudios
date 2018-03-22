@@ -3,7 +3,7 @@ class Box {
   private int type = 0;
   private int size;
 
-  private float threshold = 150;
+  private float threshold = 100;
 
   private boolean mineable     = true;
   private boolean interactable = false;
