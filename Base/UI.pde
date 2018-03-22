@@ -19,7 +19,7 @@ class UI {
   float y_UI_debug_botStroke;
   //window options text pos
   float y_UI_textPos_coins  = 38;
-  float y_UI_testPos_ressource = 18;
+  float y_UI_textPos_ressource = 18;
   float y_UI_textPos_debug = 12;
   //healthBar parameter
   float x_UI_lifeBar_borderRight = x_UI_barrier_1 - x_UI_borderSide;
@@ -51,7 +51,7 @@ class UI {
 
 
 
-  //--------------------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   //constructor
   UI() {    
     y_UI_debug_topStroke = height - 40;
@@ -63,7 +63,7 @@ class UI {
     x_UI_expBar_sizedExp = 1 + x_UI_expBar_borderLeft + x_UI_expBar_borderRight * (player1.expSys.getXPPercent()) - x_UI_expBar_borderLeft * (player1.expSys.getXPPercent());
   }
 
-  //--------------------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   //methodes -> UI windows
 
   //showing the players amount of currency and health
@@ -133,7 +133,7 @@ class UI {
     float tx3 = 120;                     //2nd number of items, stone_ and gold_
     float tx4 = 145;                     //3rd text fields, diamond_
     float tx5 = 215;                     //3rd number of items, diamond_
-    float ty  = y_UI_testPos_ressource;  //top border distance
+    float ty  = y_UI_textPos_ressource;  //top border distance
 
     //frames
     util.mainThemeUI();
@@ -208,7 +208,7 @@ class UI {
   }
 
 
-  //--------------------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   //Debug windows
 
   //showing players position as coordinates
@@ -304,8 +304,8 @@ class UI {
   }
 
 
-  //--------------------------------------------------------------------------------------------------
-  //temporary windows
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  //temporary frames
 
   //frame for buttons on market when sell
   void buttonFrameMarket(float woodPrize_, float stonePrize_, float ironPrize_, float goldPrize_, float diamondPrize_) {
@@ -349,8 +349,56 @@ class UI {
     text(goldPrize_, tx4, ty4);
     text(diamondPrize_, tx5, ty5);
   }
+  
+  //questing frame
+  void questingFrame(String questDiscribtion1_, String questDirscribtion2_, String questDiscribtion3_, String questDiscribtion4_, String questDifficulty_, int questDid_, int questDo_) {
+    
+    /* what to do:
+    - get reward button below quest ditails
+    - top frame for quest discribtion
+    - bot frame for quest ditails
+    - reward frame 
+    */
+    
+    //coordinates main frame
+    float x1;  //.-.
+    float x2;  //| | <- quest discribtion
+    float y1;  //.-. 
+    float y2;  //| | <- quest ditails
+    float y3;  //.-.
+    //coordinates text
+    float tx1;  //quest discribtion / story
+    float ty1_1;
+    float ty1_2;
+    float ty1_3;
+    
+    float tx2_0;  //quest ditails (what to do) [questlevel, already did, what u need all in all]
+    float tx2_1;
+    float ty2_2;
+    float ty2_3;
+    float ty2_4;
+    
+    float tx3_1;  //rewards [reward xp, reward coins]
+    float ty3_1;
+    
+    //top frame
+    //quad(x1, y1, x2, y1, x2, y2, x1, y2);
+    //bot frame
+    //quad(x1, y2, x2, y2, x2, y3, x2, y3);
+    
+    //show text
+    //text(string questDiscribtion_1, tx1, ty1_1);  //quest discribtion
+    //text(string questDiscribtion_2, tx1, ty1_2);  //quest discribtion
+    //text(string questDiscribtion_3, tx1, ty1_3);  //quest discribtion
+    
+    //text(string questDifficulty_, tx1, ty2_1);
+    //text(string questToDoName_1, tx1, ty2_2
+    //text(string questDid_1, tx2_1, ty2_3);
+    //text(string questDo_1, tx2_2, ty2_3);
+    
+  }
 
-  //--------------------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   //death
   void deathScreen() {
 
@@ -369,7 +417,7 @@ class UI {
     textAlign(LEFT);
   }
 
-  //--------------------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   //showing HUD via this method
   void show(Player p_, Market m_) {
     //usual
