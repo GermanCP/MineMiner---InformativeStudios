@@ -102,6 +102,15 @@ public PImage market;
 
 public PImage player;
 
+//tools
+public PImage pickaxeImg;
+public PImage wrenchImg;
+
+//icons
+public PImage handIcon;
+public PImage pickaxeIcon;
+public PImage wrenchIcon;
+
 //--------------------------------------------------------------------------------------------------
 //main class body
 void setup() {

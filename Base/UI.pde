@@ -179,20 +179,23 @@ class UI {
     quad(x1, y1, x2, y1, x2, y2, x1, y2);  //Position 3rd main Frame
 
     //Position 1st tool Frame
+    fill(0, 0, 0, 0);
     if (toolID == 0) {
       stroke(0, 255, 0);
     } else {
       stroke(255);
-    }    
+    }
+    image(handIcon, x3 , y3, -(x3 - x4), -(y3 - y4));
     quad(x3, y3, x4, y3, x4, y4, x3, y4); 
-
+    
     //Position 2nd tool Frame
     if (toolID == 1) {
       stroke(0, 255, 0);
     } else {
       stroke(255);
     }
-    quad(x5, y3, x6, y3, x6, y4, x5, y4); 
+    image(pickaxeIcon, x5 , y3, -(x5 - x6), -(y3 - y4));
+    quad(x5, y3, x6, y3, x6, y4, x5, y4);
 
     //Position 3rd tool Frame
     if (toolID == 2) {
@@ -200,6 +203,7 @@ class UI {
     } else {
       stroke(255);
     }
+    image(wrenchIcon, x7 , y3, -(x7 - x8), -(y3 - y4));
     quad(x7, y3, x8, y3, x8, y4, x7, y4);
   }
 

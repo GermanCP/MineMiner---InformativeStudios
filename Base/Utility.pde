@@ -26,7 +26,7 @@ class Utility {
 
   void mainTextUIressources() {  //main textparameter for resources for the UI
     textSize(12);
-    fill(0, 255, 0);
+    fill(255);
   }
 
   void mainTextUImainStats() {  //main textparameter for current coins for the UI
@@ -260,5 +260,12 @@ class Utility {
     market      = loadImage("../textures/market.png");
     
     player      = loadImage("../textures/player/player.png");
+    
+    pickaxeImg  = loadImage("../textures/player/pickaxe.png");
+    wrenchImg   = loadImage("../textures/player/wrench.png");
+    
+    handIcon    = loadImage("../textures/icons/hand.png");
+    pickaxeIcon = loadImage("../textures/icons/pickaxe.png");
+    wrenchIcon  = loadImage("../textures/icons/wrench.png");
   }
 }

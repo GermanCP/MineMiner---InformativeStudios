@@ -268,10 +268,17 @@ class Player {
 
     //show player
     pushMatrix();
+    //pushing matrix for later use
+    
     imageMode(CENTER);
     translate(this.pos.x, this.pos.y);
     rotate(angle);
+    
+    //drawing player
+    drawTools();
     image(player, 0, 0, this.r, this.r);
+    
+    //returning to main state
     popMatrix();
     imageMode(CORNER);
 
@@ -281,7 +288,19 @@ class Player {
     }
   }
 
-  float calcLook() {
+//--------------------------------------------------------------------------------------------------
+//underlieing drawing methods
+  void drawTools(){
+   if(hand){
+     return;
+   } else if (pickaxe){
+     image(pickaxeImg, 0, 0, this.r, this.r);
+   } else if (wrench){
+     image(wrenchImg, 0, 0, this.r, this.r);
+   }
+  }
+
+  float calcLook() {  //calculate were the player is supposed to look
     if (look.x == 0 && look.y == 0) {
       //none
     } else if (look.x == 1 && look.y == 0) {
