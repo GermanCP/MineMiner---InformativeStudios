@@ -18,12 +18,17 @@ class Player {
 
   private float r;
   private float lavaDamage = 0.25; //damage per tick
+  private float oxyReduce;
+  private float oxyReduce1 = 0.05;
+  private float oxyReduce2 = 0.025;
+  private float OxyReduce3 = 0.01;
   private float slow       = 1;
   private float normal     = 3;
   private float fast       = 4;
   private float speed;
 
   public  float health     = 100;
+  public  float oxygenlvl  = 100;
 
   private boolean pickaxe = false;
   private boolean wrench  = false;
@@ -48,6 +53,8 @@ class Player {
     this.r = r_;
 
     this.speed = this.normal;
+    
+    this.oxyReduce = oxyReduce1;
   }
 
   //---------------------------------------------------------------------------
@@ -250,10 +257,22 @@ class Player {
   //get and set methods
   void addCoins(float arg) {
     this.coins += arg;
+    
+    //add to stats
+    data.questingData.setFloat("coinsAquired", data.questingData.getInt("coinsAquired") + arg);
+    data.update();
   }
 
   void setBox(Box b_) {
     this.cBox = b_;
+  }
+  
+  void resetOxygen(){
+    this.oxygenlvl = 100;
+  }
+  
+  void updateOxygen(){
+    this.oxygenlvl -= oxyReduce; 
   }
 
   //---------------------------------------------------------------------------

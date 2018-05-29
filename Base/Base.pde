@@ -76,6 +76,7 @@ public Map overworld;
 
 public Map[] underworld = new Map[9];
 
+public Datamanagement data;
 public Utility util;
 public Animations anim;
 public Marker start;
@@ -118,6 +119,9 @@ void setup() {
   frameRate(60);
   colorMode(RGB);
   ellipseMode(CENTER);
+
+  //setting up datamanagement
+  data = new Datamanagement();
 
   //setting up UI and Utilities
   mainUI = new UI();
@@ -164,6 +168,8 @@ void setup() {
 // draw method, gets called every frame
 void draw() {
 
+  data.update();
+  
   //reserved for print statements
 
   //
