@@ -41,36 +41,31 @@ class Inventory {
       stone.add(tmp);
 
       //updating stats
-      data.questingData.setInt("stonemined", data.questingData.getInt("stonemined") + 1);
-      data.update();
+      data.mined("stonemined");
       break;
     case 3:
       iron.add(tmp);
 
       //updating stats
-      data.questingData.setInt("ironmined", data.questingData.getInt("ironmined") + 1);
-      data.update();
+      data.mined("ironmined");
       break;
     case 4:
       gold.add(tmp);
 
       //updating stats
-      data.questingData.setInt("goldmined", data.questingData.getInt("goldmined") + 1);
-      data.update();
+      data.mined("goldmined");
       break;
     case 5:
       diamond.add(tmp);
 
       //updating stats
-      data.questingData.setInt("diamondmined", data.questingData.getInt("diamondmined") + 1);
-      data.update();
+      data.mined("diamondmined");
       break;
     case 6:
       wood.add(tmp);
 
       //updating stats
-      data.questingData.setInt("woodmined", data.questingData.getInt("woodmined") + 1);
-      data.update();
+      data.mined("woodmined");
       break;
     default:
     }

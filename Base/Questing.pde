@@ -1,3 +1,5 @@
+//will be reworked with new JSON-files
+
 class Questing {
   //variables
   int questID = 0;

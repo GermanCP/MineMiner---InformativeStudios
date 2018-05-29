@@ -1,13 +1,13 @@
 {
-  "woodsold": 15,
-  "goldmined": 5,
-  "diamondmined": 1,
-  "ironsold": 10,
-  "stonemined": 10,
-  "ironmined": 10,
-  "goldsold": 5,
-  "diamondsold": 1,
-  "stonesold": 10,
-  "coinsAquired": 278,
-  "woodmined": 15
+  "woodsold": 0,
+  "goldmined": 0,
+  "diamondmined": 0,
+  "ironsold": 0,
+  "stonemined": 0,
+  "ironmined": 0,
+  "goldsold": 0,
+  "diamondsold": 0,
+  "stonesold": 0,
+  "coinsAquired": 0,
+  "woodmined": 0
 }
