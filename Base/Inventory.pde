@@ -39,18 +39,33 @@ class Inventory {
     switch(tmp.type) {
     case 2:
       stone.add(tmp);
+
+      //updating stats
+      data.mined("stonemined");
       break;
     case 3:
       iron.add(tmp);
+
+      //updating stats
+      data.mined("ironmined");
       break;
     case 4:
       gold.add(tmp);
+
+      //updating stats
+      data.mined("goldmined");
       break;
     case 5:
       diamond.add(tmp);
+
+      //updating stats
+      data.mined("diamondmined");
       break;
     case 6:
       wood.add(tmp);
+
+      //updating stats
+      data.mined("woodmined");
       break;
     default:
     }
@@ -90,6 +105,10 @@ class Inventory {
       if (wood.size() > 0) {
         wood.remove(0);
         player1.addCoins(shop.woodPrize);
+
+        //updating stats
+        data.questingData.setInt("woodsold", data.questingData.getInt("woodsold") + 1);
+        data.update();
       }
       break;
     case "stone":
@@ -97,6 +116,10 @@ class Inventory {
         //selling 1 stone
         stone.remove(0);
         player1.addCoins(shop.stonePrize);
+
+        //updating stats
+        data.questingData.setInt("stonesold", data.questingData.getInt("stonesold") + 1);
+        data.update();
       }
       break;
     case "iron":
@@ -104,6 +127,10 @@ class Inventory {
         //selling 1 iron
         iron.remove(0);
         player1.addCoins(shop.ironPrize);
+
+        //updating stats
+        data.questingData.setInt("ironsold", data.questingData.getInt("ironsold") + 1);
+        data.update();
       }
       break;
     case "gold":
@@ -111,6 +138,10 @@ class Inventory {
         //selling 1 gold
         gold.remove(0);
         player1.addCoins(shop.goldPrize);
+
+        //updating stats
+        data.questingData.setInt("goldsold", data.questingData.getInt("goldsold") + 1);
+        data.update();
       }
       break;
     case "diamond":
@@ -118,6 +149,10 @@ class Inventory {
         //selling 1 diamond
         diamond.remove(0);
         player1.addCoins(shop.diamondPrize);
+
+        //updating stats
+        data.questingData.setInt("diamondsold", data.questingData.getInt("diamondsold") + 1);
+        data.update();
       }
       break;
     }
