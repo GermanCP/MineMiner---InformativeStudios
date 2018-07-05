@@ -351,7 +351,7 @@ class UI {
   }
   
   //questing frame
-  void questingFrame(String questDiscribtion1_, String questDirscribtion2_, String questDiscribtion3_, String questDiscribtion4_, String questDifficulty_, int questDid_, int questDo_) {
+  void questingFrame(String questDiscribtion_[], int nQuestTask_[][], int nQuestReward_, String questReward) {
     
     /* what to do:
     - get reward button below quest ditails
@@ -365,39 +365,11 @@ class UI {
     float x2;  //| | <- quest discribtion
     float y1;  //.-. 
     float y2;  //| | <- quest ditails
-    float y3;  //.-.
-    //coordinates text
-    float tx1;  //quest discribtion / story
-    float ty1_1;
-    float ty1_2;
-    float ty1_3;
-    
-    float tx2_0;  //quest ditails (what to do) [questlevel, already did, what u need all in all]
-    float tx2_1;
-    float ty2_2;
-    float ty2_3;
-    float ty2_4;
-    
-    float tx3_1;  //rewards [reward xp, reward coins]
-    float ty3_1;
-    
-    //top frame
-    //quad(x1, y1, x2, y1, x2, y2, x1, y2);
-    //bot frame
-    //quad(x1, y2, x2, y2, x2, y3, x2, y3);
-    
-    //show text
-    //text(string questDiscribtion_1, tx1, ty1_1);  //quest discribtion
-    //text(string questDiscribtion_2, tx1, ty1_2);  //quest discribtion
-    //text(string questDiscribtion_3, tx1, ty1_3);  //quest discribtion
-    
-    //text(string questDifficulty_, tx1, ty2_1);
-    //text(string questToDoName_1, tx1, ty2_2
-    //text(string questDid_1, tx2_1, ty2_3);
-    //text(string questDo_1, tx2_2, ty2_3);
+    float y3 = y2 + ty3_1 + ((y_UI_textPos_debug + textSize) * nQuestTask_[0][length]);  //.-.
     
   }
-
+    
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   //death
   void deathScreen() {
