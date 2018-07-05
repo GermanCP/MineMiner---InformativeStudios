@@ -1,3 +1,5 @@
+//will be reworked with new JSON-files
+
 class Questing {
   //variables
   int questID = 0;
@@ -17,9 +19,12 @@ class Questing {
     return currentQuest;
   }
 }
+<<<<<<< HEAD
 
 /* give for UI:
 number of questDiscribtions
 quest difficulty
 number of tasks (in UI, define whats a task)
 rewards (coins, xp, [item?]);
+=======
+>>>>>>> b9641a7c765da32cd0093d77b504ee436468a245
